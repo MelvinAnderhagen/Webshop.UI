@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Webshop.UI.ShoppingCart
+namespace Webshop.UI.Pages.ShoppingCart
 {
     public class ShoppingCartModel : PageModel
     {
