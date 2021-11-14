@@ -26,12 +26,19 @@ namespace Webshop.UI.DataAccess
         {
             _dataSource.GetAllProducts();
         }
-        public CustomersDTO GetById(int id)
+        public CustomersDTO GetCustomerById(int id)
         {
            var users = _dataSource.GetAllCustomers().ToList();
 
             var user = users.Find(user => user.Id == id);
             return user;
+        }
+        public ProductsDTO GetProductById(int id)
+        {
+            var products = _dataSource.GetAllProducts().ToList();
+
+            var product = products.Find(user => user.Id == id);
+            return product;
         }
 
     }

@@ -3,33 +3,18 @@
 @{
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>twitter</td>
-        </tr>
-    </tbody>
-</table>
+<h1>Products</h1>
+
+@foreach (var item in Model.Products)
+	{
+		<img src="@item.Image" alt="Card image cap" class="img-thumbnail" />
+		<h6>Product : @item.Name</h6>
+        <h6>Price : @item.Price$</h6>
+        <form asp-page-handler="ShoppingCart">
+            <input type="hidden" asp-for="Id" value="@item.Id" />
+            <br />
+            <button type="button" class="btn btn-light">Add to cart</button>
+            <br />
+        </form>
+        
+	}
