@@ -5,6 +5,7 @@ namespace DataSource_DB
 {
     public interface IDataSource
     {
-        IEnumerable<CustomersDTO> GetPath();
+        IEnumerable<CustomersDTO> GetAllCustomers();
+        IEnumerable<ProductsDTO> GetAllProducts();
     }
 }

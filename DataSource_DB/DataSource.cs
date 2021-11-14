@@ -11,13 +11,21 @@ namespace DataSource_DB
 {
     public class DataSource : IDataSource
     {
-        public IEnumerable<CustomersDTO> GetPath()
+        public IEnumerable<CustomersDTO> GetAllCustomers()
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_JSON.json";
             var jsonResponse = File.ReadAllText(path);
-            var json = JsonConvert.DeserializeObject<IEnumerable<CustomersDTO>>(jsonResponse);
+            var customers = JsonConvert.DeserializeObject<IEnumerable<CustomersDTO>>(jsonResponse);
 
-            return json;
+            return customers;
+        }
+        public IEnumerable<ProductsDTO> GetAllProducts()
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Products.json";
+            var jsonResponse = File.ReadAllText(path);
+            var products = JsonConvert.DeserializeObject<IEnumerable<ProductsDTO>>(jsonResponse);
+
+            return products;
         }
     }
 }

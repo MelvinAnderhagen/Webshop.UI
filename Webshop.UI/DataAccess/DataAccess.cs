@@ -20,11 +20,15 @@ namespace Webshop.UI.DataAccess
 
         public void GetAllCust()
         {
-            _dataSource.GetPath();
+            _dataSource.GetAllCustomers();
+        }
+        public void GetAllProducts()
+        {
+            _dataSource.GetAllProducts();
         }
         public CustomersDTO GetById(int id)
         {
-           var users = _dataSource.GetPath().ToList();
+           var users = _dataSource.GetAllCustomers().ToList();
 
             var user = users.Find(user => user.Id == id);
             return user;
