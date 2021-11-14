@@ -9,6 +9,6 @@ namespace Card
     public class CreditCard
     {
         public long CreditcardNumber { get; set; }
-        public string Name { get; set; }
+        public int Money { get; set; }
     }
 }

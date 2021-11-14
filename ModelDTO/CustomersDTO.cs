@@ -15,5 +15,7 @@ namespace ModelDTO
         public long TelNum { get; set; }
         [JsonProperty("email")]
         public string Email { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
     }
 }

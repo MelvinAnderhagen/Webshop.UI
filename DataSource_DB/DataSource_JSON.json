@@ -2,11 +2,13 @@
   {
     "name": "Melvin Anderhagen",
     "phonenumber": 732535352,
-    "email": "melvin.anderhagen@gmail.com"
+    "email": "melvin.anderhagen@gmail.com",
+    "id" : 1
   },
   {
     "name": "Ingrid Kasslersson",
     "phonenumber": 702389432,
-    "email": "ingrid.kasslersson@hotmail.com"
+    "email": "ingrid.kasslersson@hotmail.com",
+    "id" : 2
   }
 ]
