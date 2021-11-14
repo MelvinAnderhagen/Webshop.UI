@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.UI", "Webshop.UI\Webshop.UI.csproj", "{0403E998-432B-42CA-98E0-7FD08D610988}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webshop.UI", "Webshop.UI\Webshop.UI.csproj", "{0403E998-432B-42CA-98E0-7FD08D610988}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DTO", "DTO", "{1A0458A2-FCBE-482D-8894-45EC29CD14F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelDTO", "ModelDTO\ModelDTO.csproj", "{3DFBD960-CCEE-4300-9084-082AE2E084BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CardDTO", "CardDTO", "{1B56E5C4-2EFB-432A-8DA3-E6D2510FA17F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Card", "Card\Card.csproj", "{377639A2-03A2-46CE-974B-1592425C29E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataSource", "DataSource", "{7AD4D2F7-6522-4280-8017-6F651520491C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataSource_DB", "DataSource_DB\DataSource_DB.csproj", "{B23D54F7-F8A8-48FF-9A7F-A009EA53958F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,26 @@ Global
 		{0403E998-432B-42CA-98E0-7FD08D610988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0403E998-432B-42CA-98E0-7FD08D610988}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0403E998-432B-42CA-98E0-7FD08D610988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DFBD960-CCEE-4300-9084-082AE2E084BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DFBD960-CCEE-4300-9084-082AE2E084BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DFBD960-CCEE-4300-9084-082AE2E084BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DFBD960-CCEE-4300-9084-082AE2E084BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{377639A2-03A2-46CE-974B-1592425C29E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{377639A2-03A2-46CE-974B-1592425C29E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{377639A2-03A2-46CE-974B-1592425C29E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{377639A2-03A2-46CE-974B-1592425C29E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B23D54F7-F8A8-48FF-9A7F-A009EA53958F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B23D54F7-F8A8-48FF-9A7F-A009EA53958F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B23D54F7-F8A8-48FF-9A7F-A009EA53958F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B23D54F7-F8A8-48FF-9A7F-A009EA53958F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3DFBD960-CCEE-4300-9084-082AE2E084BF} = {1A0458A2-FCBE-482D-8894-45EC29CD14F5}
+		{377639A2-03A2-46CE-974B-1592425C29E9} = {1B56E5C4-2EFB-432A-8DA3-E6D2510FA17F}
+		{B23D54F7-F8A8-48FF-9A7F-A009EA53958F} = {7AD4D2F7-6522-4280-8017-6F651520491C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {05855E4F-47D7-48A0-8E5D-F84E01DBEE26}
