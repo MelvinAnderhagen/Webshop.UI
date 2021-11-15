@@ -11,8 +11,8 @@ namespace ModelDTO
     {
         [JsonProperty("name")]
         public string Name { get; set; }
-        [JsonProperty("phonenumber")]
-        public long TelNum { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
         [JsonProperty("email")]
         public string Email { get; set; }
         [JsonProperty("id")]

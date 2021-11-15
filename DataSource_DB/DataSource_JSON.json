@@ -1,13 +1,13 @@
 [
   {
     "name": "Melvin Anderhagen",
-    "phonenumber": 732535352,
+    "password": "hundenkattenglassen",
     "email": "melvin.anderhagen@gmail.com",
     "id" : 1
   },
   {
     "name": "Ingrid Kasslersson",
-    "phonenumber": 702389432,
+    "password": "moonwalker",
     "email": "ingrid.kasslersson@hotmail.com",
     "id" : 2
   }

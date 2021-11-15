@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace Webshop.UI.DataAccess
 {
-    public class DataAccess : IDataAccess
+    public class DataAccess_DB : IDataAccess
     {
         private readonly IDataSource _dataSource;
 
-        public DataAccess(IDataSource dataSource)
+        public DataAccess_DB(IDataSource dataSource)
         {
             _dataSource = dataSource;
         }
+
         public CustomersDTO GetCustomerById(int id)
         {
             var users = _dataSource.GetAllCustomers().ToList();
@@ -30,6 +31,20 @@ namespace Webshop.UI.DataAccess
 
             var product = products.Find(user => user.Id == id);
             return product;
+        }
+        public bool UserNotFound(string email, string password)
+        {
+            var users = _dataSource.GetAllCustomers().ToList();
+            var Found = false;
+
+            foreach (var cust in users)
+            {
+                if (email == cust.Email && password == cust.Password)
+                {
+                    Found = true;
+                }
+            }
+            return Found;
         }
     }
 }
