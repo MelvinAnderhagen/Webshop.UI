@@ -29,7 +29,7 @@ namespace Webshop.UI.Pages.Login
             var user = _datasource.GetAllCustomers().ToList();
         }
 
-        public void OnPostLogin()
+        public IActionResult OnPostLogin()
         {
             if (ModelState.IsValid) //Modelstate är en summering av våra anotationer
             {
@@ -37,15 +37,15 @@ namespace Webshop.UI.Pages.Login
                 {
                     AlertsCaller = "alert alert-success";
                     Feedback = "You have successfully logged in."; //Uppfyller vi kraven av vår modelstate.
+                    return RedirectToPage("/Index", "Login");
                 }
                 else
                 {
                     AlertsCaller = "alert alert-danger";
                     Feedback = "Email or Password is incorrect.";
                 }
-
             }
-            
+            return Page();
 
         }
     }
