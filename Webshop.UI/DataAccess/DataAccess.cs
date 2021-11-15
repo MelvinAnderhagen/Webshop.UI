@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Webshop.UI.DataAccess
 {
-    public class DataAccess
+    public class DataAccess : IDataAccess
     {
         private readonly IDataSource _dataSource;
 
@@ -17,18 +17,9 @@ namespace Webshop.UI.DataAccess
         {
             _dataSource = dataSource;
         }
-
-        public void GetAllCust()
-        {
-            _dataSource.GetAllCustomers();
-        }
-        public void GetAllProducts()
-        {
-            _dataSource.GetAllProducts();
-        }
         public CustomersDTO GetCustomerById(int id)
         {
-           var users = _dataSource.GetAllCustomers().ToList();
+            var users = _dataSource.GetAllCustomers().ToList();
 
             var user = users.Find(user => user.Id == id);
             return user;
@@ -40,6 +31,5 @@ namespace Webshop.UI.DataAccess
             var product = products.Find(user => user.Id == id);
             return product;
         }
-
     }
 }

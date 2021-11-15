@@ -6,15 +6,18 @@ using DataSource_DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ModelDTO;
+using Webshop.UI.DataAccess;
 
 namespace Webshop.UI.Pages.Products
 {
     public class ProductsModel : PageModel
     {
+        private readonly IDataAccess _dataaccess;
         private readonly IDataSource _datasource;
-        public ProductsModel(IDataSource datasource)
+        public ProductsModel(IDataSource datasource, IDataAccess dataAccess)
         {
             _datasource = datasource;
+            _dataaccess = dataAccess;
         }
         [BindProperty]
         public int Id { get; set; }
@@ -23,11 +26,11 @@ namespace Webshop.UI.Pages.Products
         {
             Products = _datasource.GetAllProducts().ToList();
         }
-        public IActionResult OnPostAdd()
+        public IActionResult OnPostAddToCart()
         {
             if (ModelState.IsValid)
             {
-                return RedirectToPage("/ShoppingCart/ShoppingCart", "Products", new { id = Id });
+                return RedirectToPage("ShoppingCart/ShoppingCart", "ShoppingCart", new { id = Id });
             }
             return Page();
         }
