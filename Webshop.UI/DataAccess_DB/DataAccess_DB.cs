@@ -10,7 +10,14 @@ namespace Webshop.UI.DataAccess
 {
     public class DataAccess_DB : IDataAccess
     {
-        
+        public IEnumerable<ShoppingCartDTO> GetAllCarts()
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
+            var jsonRead = File.ReadAllText(path);
+            var jsonResponse = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
+
+            return jsonResponse;
+        }
         public IEnumerable<CustomersDTO> GetAllCustomers()
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_JSON.json";
@@ -53,11 +60,9 @@ namespace Webshop.UI.DataAccess
             }
             return Found;
         }
-        public void CreateCart(int id)
+        public ShoppingCartDTO CreateCart(int id)
         {
-            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
-            var jsonResponse = File.ReadAllText(path);
-            var CurrentCart = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonResponse);
+            var CurrentCart = GetAllCarts().ToList();
 
             ShoppingCartDTO Cart = new ShoppingCartDTO();
             Cart.CartId = id;
@@ -65,10 +70,14 @@ namespace Webshop.UI.DataAccess
             CurrentCart.Add(Cart);
 
             var serializeobject = JsonConvert.SerializeObject(CurrentCart);
-
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
             File.WriteAllText(path, serializeobject);
+
+            return Cart;
         }
         
+
+
         public void EditItems(ProductsDTO product)
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Products.json"; 

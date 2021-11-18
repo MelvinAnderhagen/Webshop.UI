@@ -10,48 +10,49 @@
 @{
     string page = ViewContext.RouteData.Values["page"] as string;
 }
+ 
 <body>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">IT.com</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    @if (!page.StartsWith("/StorePage/LoggedinIndex"))
-                    {
-                        <ul class="navbar-nav flex-grow-1 justify-content-end">
-                            <li class="nav-item">
-                                <button style="background: white"><a class="nav-link text-dark align-self-end" asp-area="" asp-page="/Login/Login">Login</a></button>
-                            </li>
-                        </ul>
-                    }
-                    else if(page.StartsWith("/Login"))
-                    {
-
-                    }
-                    else
-                    {
-                        <ul class="navbar-nav flex-grow-1 justify-content-end">
-                            <li class="nav-item">
-                                <button style="background: white"><a class="nav-link text-dark align-self-end" asp-area="" asp-page="/Index">Logout</a></button>
-                            </li>
-                        </ul>
-                    }
-                    <ul class="navbar-nav flex-grow-1">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">IT.com</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                @if (!page.StartsWith("/StorePage/LoggedinIndex"))
+                {
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ShoppingCart/ShoppingCart">ShoppingCart</a>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/EditProducts/Products">Edit Products</a>
+                            <button style="background: white"><a class="nav-link text-dark align-self-end" asp-area="" asp-page="/Login/Login">Login</a></button>
                         </li>
                     </ul>
-                </div>
+                }
+                else if (page.StartsWith("/Login"))
+                {
+
+                }
+                else
+                {
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
+                        <li class="nav-item">
+                            <button style="background: white"><a class="nav-link text-dark align-self-end" asp-area="" asp-page="/Index">Logout</a></button>
+                        </li>
+                    </ul>
+                }
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/ShoppingCart/ShoppingCart">ShoppingCart</a>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/EditProducts/Products">Edit Products</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

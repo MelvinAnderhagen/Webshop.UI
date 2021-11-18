@@ -20,21 +20,22 @@ namespace Webshop.UI.Pages.StorePage
         [BindProperty]
         public List<ProductsDTO> Products { get; set; }
         [BindProperty]
+        public List<ProductsDTO> Cart { get; set; }
         public ProductsDTO Product { get; set; }
         public LoggedinIndexModel(IDataAccess dataaccess)
         {
             _dataaccess = dataaccess;
         }
-        public void OnGet()
+        public void OnGet(int id)
         {
             Products = _dataaccess.GetAllProducts().ToList();
+            _dataaccess.CreateCart(id);
         }
         public void OnPostAddToCart()
         {
             if (ModelState.IsValid)
             {
-                var id = _dataaccess.GetProductById(Id);
-                JsonConvert.SerializeObject(id);
+                
             }
         }
     }
