@@ -13,5 +13,6 @@ namespace Webshop.UI.DataAccess
         ShoppingCartDTO CreateCart(int id);
         void EditItems(ProductsDTO product);
         IEnumerable<ShoppingCartDTO> GetAllCarts();
+        void AddToCart(ProductsDTO products, int id);
     }
 }
