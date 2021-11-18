@@ -31,7 +31,7 @@ namespace Webshop.UI.Pages.StorePage
             Products = _dataaccess.GetAllProducts().ToList();
             _dataaccess.CreateCart(id);
         }
-        public void OnPostAddToCart()
+        public void OnGetAddToCart()
         {
             if (ModelState.IsValid)
             {

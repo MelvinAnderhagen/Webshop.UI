@@ -20,7 +20,28 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                @if (!page.StartsWith("/StorePage/LoggedinIndex"))
+
+
+                @if (!page.StartsWith("/Index") && !page.StartsWith("/Login/Login"))
+                {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ShoppingCart/ShoppingCart">ShoppingCart</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/EditProducts/Products">Products</a>
+                            </li>
+                        </ul>
+                    </ul>
+                }
+                else
+                {
+
+                }
+                @if (!page.StartsWith("/StorePage/LoggedinIndex") && !page.StartsWith("/EditProducts/Products") && !page.StartsWith("/ShoppingCart/ShoppingCart") && !page.StartsWith("/EditProducts/EditProducts"))
                 {
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item">
@@ -28,7 +49,7 @@
                         </li>
                     </ul>
                 }
-                else if (page.StartsWith("/Login"))
+                else if (page.StartsWith("/Login/Login"))
                 {
 
                 }
@@ -40,16 +61,10 @@
                         </li>
                     </ul>
                 }
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/ShoppingCart/ShoppingCart">ShoppingCart</a>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/EditProducts/Products">Edit Products</a>
-                    </li>
-                </ul>
+
+
+
+
             </div>
         </div>
     </nav>

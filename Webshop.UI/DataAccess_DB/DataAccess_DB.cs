@@ -76,8 +76,21 @@ namespace Webshop.UI.DataAccess
             return Cart;
         }
         
+        public void ClearCartById(int id)
+        {
+            var status = GetAllCarts().ToList(); //Injecting list of type shoppingcart
 
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
 
+            var cart = status.Find(cart => cart.CartId == id); //Finding exact item using Id
+
+            var update = status.IndexOf(cart); //Making a variable with the index of that Id
+
+            status[update].CartItems = null; //Making that value become null. 
+            var serialized = JsonConvert.SerializeObject(status); 
+
+            File.WriteAllText(path, serialized); //Overwriting all for that specific object by using Id and file path.
+        }
         public void EditItems(ProductsDTO product)
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Products.json"; 

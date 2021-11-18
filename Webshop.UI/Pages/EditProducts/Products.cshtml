@@ -5,11 +5,12 @@
 
 @foreach (var prod in Model.Prods)
 {
-    <div class="text-center">
-        <img src="@prod.Image" alt="Card image cap" class="img-thumbnail" />
-        <h6>Product : @prod.Name</h6>
-        <h6>Price : @prod.Price$</h6>
-        <h6>Message: @prod.Message</h6>
+<div class="text-center">
+    <img src="@prod.Image" alt="Card image cap" class="img-thumbnail" />
+    <h6>Product : @prod.Name</h6>
+    <h6>Price : @prod.Price$</h6>
+    <h6>Message: @prod.Message</h6>
+
         <form asp-page-handler="Edit">
             <input type="hidden" asp-for="Id" value="@prod.Id" />
             <br />
@@ -17,5 +18,7 @@
             <br />
         </form>
     </div>
+
+        
 
 }

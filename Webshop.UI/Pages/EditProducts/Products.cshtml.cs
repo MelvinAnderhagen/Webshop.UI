@@ -13,6 +13,7 @@ namespace Webshop.UI.Pages.EditProducts
     public class ProductsModel : PageModel
     {
         private readonly IDataAccess _dataaccess;
+        public List<CustomersDTO> Customer { get; set; }
         public ProductsModel(IDataAccess dataaccess)
         {
             _dataaccess = dataaccess;
@@ -24,6 +25,7 @@ namespace Webshop.UI.Pages.EditProducts
         public void OnGet()
         {
             Prods = _dataaccess.GetAllProducts().ToList();
+            Customer = _dataaccess.GetAllCustomers().ToList();
         }
 
         public IActionResult OnPostEdit()
