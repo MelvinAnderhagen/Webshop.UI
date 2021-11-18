@@ -1,5 +1,4 @@
-﻿using DataSource_DB;
-using ModelDTO;
+﻿using ModelDTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,30 +10,38 @@ namespace Webshop.UI.DataAccess
 {
     public class DataAccess_DB : IDataAccess
     {
-        private readonly IDataSource _dataSource;
-
-        public DataAccess_DB(IDataSource dataSource)
-        {
-            _dataSource = dataSource;
-        }
         
+        public IEnumerable<CustomersDTO> GetAllCustomers()
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_JSON.json";
+            var jsonResponse = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<IEnumerable<CustomersDTO>>(jsonResponse);
+        }
+
+        public IEnumerable<ProductsDTO> GetAllProducts()
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Products.json";
+            var jsonResponse = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<IEnumerable<ProductsDTO>>(jsonResponse);
+        }
+
         public CustomersDTO GetCustomerById(int id)
         {
-            var users = _dataSource.GetAllCustomers().ToList();
+            var users = GetAllCustomers().ToList();
 
             var user = users.Find(user => user.id == id);
             return user;
         }
         public ProductsDTO GetProductById(int id)
         {
-            var products = _dataSource.GetAllProducts().ToList();
+            var products = GetAllProducts().ToList();
 
             var product = products.Find(product => product.Id == id);
             return product;
         }
         public bool UserNotFound(string email, string password)
         {
-            var users = _dataSource.GetAllCustomers().ToList();
+            var users = GetAllCustomers().ToList();
             var Found = false;
 
             foreach (var cust in users)
@@ -46,16 +53,26 @@ namespace Webshop.UI.DataAccess
             }
             return Found;
         }
-        public void AddToCart(int id)
+        public void CreateCart(int id)
         {
-            
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
+            var jsonResponse = File.ReadAllText(path);
+            var CurrentCart = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonResponse);
 
-            
+            ShoppingCartDTO Cart = new ShoppingCartDTO();
+            Cart.CartId = id;
+
+            CurrentCart.Add(Cart);
+
+            var serializeobject = JsonConvert.SerializeObject(CurrentCart);
+
+            File.WriteAllText(path, serializeobject);
         }
+        
         public void EditItems(ProductsDTO product)
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Products.json"; 
-            var products = _dataSource.GetAllProducts().ToList();
+            var products = GetAllProducts().ToList();
 
             foreach (var item in products)
             {
@@ -64,6 +81,7 @@ namespace Webshop.UI.DataAccess
                     var IndexOfUser = products.IndexOf(item); //Sparar index av item från users i en variabel.
                     products[IndexOfUser].Name = product.Name;
                     products[IndexOfUser].Price = product.Price;
+                    products[IndexOfUser].Message = product.Message;
                 }
             }
 

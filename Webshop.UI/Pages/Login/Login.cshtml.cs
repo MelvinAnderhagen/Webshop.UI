@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataSource_DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ModelDTO;
@@ -12,7 +11,6 @@ namespace Webshop.UI.Pages.Login
 {
     public class LoginModel : PageModel
     {
-        private readonly IDataSource _datasource;
         private readonly IDataAccess _dataaccess;
         [BindProperty]
         public CustomersDTO Customer { get; set; }
@@ -20,14 +18,13 @@ namespace Webshop.UI.Pages.Login
         public string Feedback { get; set; }
         [BindProperty]
         public int Id { get; set; }
-        public LoginModel(IDataSource datasource, IDataAccess dataaccess)
+        public LoginModel(IDataAccess dataaccess)
         {
             _dataaccess = dataaccess;
-            _datasource = datasource;
         }
         public void OnGet()
         {
-            var user = _datasource.GetAllCustomers().ToList();
+            var user = _dataaccess.GetAllCustomers().ToList();
         }
 
         public IActionResult OnPostLogin()
@@ -38,7 +35,7 @@ namespace Webshop.UI.Pages.Login
                 {
                     AlertsCaller = "alert alert-success";
                     Feedback = "You have successfully logged in."; 
-                    return RedirectToPage("/Index", "Login");
+                    return RedirectToPage("/StorePage/LoggedinIndex", "Login", new { id = Id});
                 }
                 else
                 {

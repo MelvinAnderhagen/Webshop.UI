@@ -1,0 +1,23 @@
+﻿@page
+@model Webshop.UI.Pages.StorePage.LoggedinIndexModel
+@{
+}
+
+<h1>Products</h1>
+<br />
+
+@foreach (var item in Model.Products)
+{
+    <div asp-page-handler="Index" class="text-center">
+        <img src="@item.Image" alt="Card image cap" class="img-thumbnail" />
+        <h6>Product : @item.Name</h6>
+        <h6>Price : @item.Price$</h6>
+        <form>
+            <input type="hidden" asp-for="Id" value="@item.Id" />
+            <br />
+            <button type="submit" class="btn btn-light">Add to cart</button>
+            <br />
+        </form>
+    </div>
+
+}

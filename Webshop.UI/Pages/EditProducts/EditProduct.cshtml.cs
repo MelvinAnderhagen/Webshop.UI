@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataSource_DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ModelDTO;
@@ -13,15 +12,12 @@ namespace Webshop.UI.Pages.EditProducts
 {
     public class EditProductModel : PageModel
     {
-        private readonly IDataSource _datasource;
         private readonly IDataAccess _dataaccess;
 
-        public EditProductModel(IDataSource datasource, IDataAccess dataaccess)
+        public EditProductModel(IDataAccess dataaccess)
         {
-            _datasource = datasource;
             _dataaccess = dataaccess;
         }
-
         [BindProperty]
         public ProductsDTO Product { get; set; }
         public void OnGet(int id)

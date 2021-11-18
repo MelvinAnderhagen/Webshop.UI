@@ -1,5 +1,4 @@
-﻿using DataSource_DB;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ModelDTO;
@@ -16,36 +15,21 @@ namespace Webshop.UI.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly IDataAccess _dataaccess;
-        private readonly IDataSource _datasource;
 
-        [BindProperty]
-        [JsonProperty("productid")]
-        public int Id { get; set; }
         [BindProperty]
         public List<ProductsDTO> Products { get; set; }
-        [BindProperty]
-        public ProductsDTO Product { get; set; }
-
-        public IndexModel(ILogger<IndexModel> logger, IDataSource datasource, IDataAccess dataaccess)
+       
+        public IndexModel(ILogger<IndexModel> logger, IDataAccess dataaccess)
         {
             _logger = logger;
             _dataaccess = dataaccess;
-            _datasource = datasource;
         }
 
         public void OnGet()
         {
-            Products = _datasource.GetAllProducts().ToList();
+            Products = _dataaccess.GetAllProducts().ToList();
         }
 
-        public void OnPostAddToCart()
-        {
-            if (ModelState.IsValid)
-            {
-                _dataaccess.GetProductById(Id);
-            }
-            
-        }
-
+        
     }
 }

@@ -1,4 +1,3 @@
-using DataSource_DB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,7 +25,6 @@ namespace Webshop.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IDataAccess, DataAccess_DB>();
-            services.AddSingleton<IDataSource, DataSource>();
             services.AddRazorPages();
         }
 
