@@ -15,17 +15,20 @@ namespace DataSource_DB
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_JSON.json";
             var jsonResponse = File.ReadAllText(path);
-            var customers = JsonConvert.DeserializeObject<IEnumerable<CustomersDTO>>(jsonResponse);
-
-            return customers;
+            return JsonConvert.DeserializeObject<IEnumerable<CustomersDTO>>(jsonResponse);
         }
         public IEnumerable<ProductsDTO> GetAllProducts()
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Products.json";
             var jsonResponse = File.ReadAllText(path);
-            var products = JsonConvert.DeserializeObject<IEnumerable<ProductsDTO>>(jsonResponse);
+            return JsonConvert.DeserializeObject<IEnumerable<ProductsDTO>>(jsonResponse);
+        }
+        public IEnumerable<ProductsDTO> GetAllCartItems()
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
+            var jsonResponse = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<IEnumerable<ProductsDTO>>(jsonResponse);
 
-            return products;
         }
     }
 }

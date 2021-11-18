@@ -6,31 +6,32 @@ using DataSource_DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ModelDTO;
-using Webshop.UI.DataAccess;
+using Newtonsoft.Json;
 
-namespace Webshop.UI.Pages.Products
+namespace Webshop.UI.Pages.EditProducts
 {
     public class ProductsModel : PageModel
     {
-        private readonly IDataAccess _dataaccess;
         private readonly IDataSource _datasource;
-        public ProductsModel(IDataSource datasource, IDataAccess dataAccess)
+
+        public ProductsModel(IDataSource datasource)
         {
             _datasource = datasource;
-            _dataaccess = dataAccess;
         }
         [BindProperty]
         public int Id { get; set; }
-        public List<ProductsDTO> Products { get; set; }
+        [BindProperty]
+        public List<ProductsDTO> Prods { get; set; }
         public void OnGet()
         {
-            Products = _datasource.GetAllProducts().ToList();
+            Prods = _datasource.GetAllProducts().ToList();
         }
-        public IActionResult OnPostAddToCart()
+
+        public IActionResult OnPostEdit()
         {
             if (ModelState.IsValid)
             {
-                return RedirectToPage("ShoppingCart/ShoppingCart", "ShoppingCart", new { id = Id });
+                return RedirectToPage("/EditProducts/EditProduct", "Products", new { id = Id });
             }
             return Page();
         }

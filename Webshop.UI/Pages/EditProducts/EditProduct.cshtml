@@ -1,0 +1,17 @@
+﻿@page
+@model Webshop.UI.Pages.EditProducts.EditProductModel
+@{
+}
+
+<h1>Edit</h1>
+
+<h3>@Model.Product.Name</h3>
+
+<form asp-page-handler="Save">
+    <h6>Name: </h6>
+    <input type="text" asp-for="Product.Name" value="@Model.Product.Name" />
+    <h6>Price: </h6>
+    <input type="text" asp-for="Product.Price" value="@Model.Product.Price" />
+    <input type="hidden" asp-for="Product.Id" value="@Model.Product.Id" />
+    <button type="submit">Save</button>
+</form>

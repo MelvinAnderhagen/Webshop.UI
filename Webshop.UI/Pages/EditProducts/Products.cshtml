@@ -1,0 +1,20 @@
+﻿@page
+@model Webshop.UI.Pages.EditProducts.ProductsModel
+@{
+}
+
+@foreach (var prod in Model.Prods)
+{
+    <div class="text-center">
+        <img src="@prod.Image" alt="Card image cap" class="img-thumbnail" />
+        <h6>Product : @prod.Name</h6>
+        <h6>Price : @prod.Price$</h6>
+        <form asp-page-handler="Edit">
+            <input type="hidden" asp-for="Id" value="@prod.Id" />
+            <br />
+            <button type="submit">Edit</button>
+            <br />
+        </form>
+    </div>
+
+}

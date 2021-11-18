@@ -5,8 +5,38 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to IT.com</h1>
 </div>
 
+<br />
+
+<div class="text-center" role="alert">
+    We are an international IT company with 100 different clients nation wide.
+    <br />
+    We are stationed in Stockholm, Sweden with 10 different officies in India and USA.
+</div>
+
+<br />
+
+<div class="text-center">
+    <img src="https://media.tacdn.com/media/attractions-splice-spp-674x446/07/03/1c/9c.jpg" alt="Alternate Text" />
+    <br />
+    <h1>Products</h1>
+</div>
+
+@foreach (var item in Model.Products)
+{
+<div asp-page-handler="Index" class="text-center">
+    <img src="@item.Image" alt="Card image cap" class="img-thumbnail" />
+    <h6>Product : @item.Name</h6>
+    <h6>Price : @item.Price$</h6>
+    <form >
+        <input type="hidden" asp-for="Id" value="@item.Id" />
+        <br />
+        <button type="submit" class="btn btn-light">Add to cart</button>
+        <br />
+    </form>
+</div>
+    
+}
 

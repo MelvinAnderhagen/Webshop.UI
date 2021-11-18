@@ -7,5 +7,6 @@ namespace DataSource_DB
     {
         IEnumerable<CustomersDTO> GetAllCustomers();
         IEnumerable<ProductsDTO> GetAllProducts();
+        IEnumerable<ProductsDTO> GetAllCartItems();
     }
 }

@@ -17,19 +17,19 @@ namespace Webshop.UI.DataAccess
         {
             _dataSource = dataSource;
         }
-
+        
         public CustomersDTO GetCustomerById(int id)
         {
             var users = _dataSource.GetAllCustomers().ToList();
 
-            var user = users.Find(user => user.Id == id);
+            var user = users.Find(user => user.id == id);
             return user;
         }
         public ProductsDTO GetProductById(int id)
         {
             var products = _dataSource.GetAllProducts().ToList();
 
-            var product = products.Find(user => user.Id == id);
+            var product = products.Find(product => product.Id == id);
             return product;
         }
         public bool UserNotFound(string email, string password)
@@ -45,6 +45,31 @@ namespace Webshop.UI.DataAccess
                 }
             }
             return Found;
+        }
+        public void AddToCart(int id)
+        {
+            
+
+            
+        }
+        public void EditItems(ProductsDTO product)
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Products.json"; 
+            var products = _dataSource.GetAllProducts().ToList();
+
+            foreach (var item in products)
+            {
+                if (item.Id == product.Id) //If the items id matches with the user id the run the itiration
+                {
+                    var IndexOfUser = products.IndexOf(item); //Sparar index av item från users i en variabel.
+                    products[IndexOfUser].Name = product.Name;
+                    products[IndexOfUser].Price = product.Price;
+                }
+            }
+
+            var serializedUsers = JsonConvert.SerializeObject(products);
+            File.WriteAllText(path, serializedUsers);
+
         }
     }
 }

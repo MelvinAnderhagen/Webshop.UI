@@ -3,12 +3,12 @@
     "name": "Melvin Anderhagen",
     "password": "hundenkattenglassen",
     "email": "melvin.anderhagen@gmail.com",
-    "id" : 1
+    "Id" : 1
   },
   {
     "name": "Ingrid Kasslersson",
     "password": "moonwalker",
     "email": "ingrid.kasslersson@hotmail.com",
-    "id" : 2
+    "Id" : 2
   }
 ]
