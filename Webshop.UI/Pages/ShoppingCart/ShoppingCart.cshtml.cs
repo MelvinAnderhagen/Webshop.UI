@@ -13,19 +13,16 @@ namespace Webshop.UI.Pages.ShoppingCart
     {
         private readonly IDataAccess _dataaccess;
 
-        public List<ProductsDTO> Cart { get; set; }
-        public List<ProductsDTO> Products { get; set; }
+        public ShoppingCartDTO Cart { get; set; }
         public ShoppingCartModel(IDataAccess dataaccess)
         {
             _dataaccess = dataaccess;
         }
-
-        public ProductsDTO Product { get; set; }
         public void OnGet(int id)
-        { 
-            _dataaccess.CreateCart(id);
+        {
+            Cart = _dataaccess.GetShoppingCart(id);
         }
-        public void OnGetAddToCart()
+        public void OnGetAddToCart(int id)
         {
             if (ModelState.IsValid)
             {

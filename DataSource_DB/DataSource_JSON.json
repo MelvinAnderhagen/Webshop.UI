@@ -3,18 +3,18 @@
     "name": "Admin",
     "password": "admin123",
     "email": "admin@admin.se",
-    "Id" : 0
+    "id" : 0
   },
   {
     "name": "Melvin Anderhagen",
     "password": "hundenkattenglassen",
     "email": "melvin.anderhagen@gmail.com",
-    "Id": 1
+    "id": 1
   },
   {
     "name": "Ingrid Kasslersson",
     "password": "moonwalker",
     "email": "ingrid.kasslersson@hotmail.com",
-    "Id": 2
+    "id": 2
   }
 ]

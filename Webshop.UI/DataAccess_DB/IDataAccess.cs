@@ -7,12 +7,14 @@ namespace Webshop.UI.DataAccess
     {
         IEnumerable<CustomersDTO> GetAllCustomers();
         IEnumerable<ProductsDTO> GetAllProducts();
-        bool UserNotFound(string email, string password);
+        CustomersDTO LoginForms(string email, string password);
         CustomersDTO GetCustomerById(int id);
         ProductsDTO GetProductById(int id);
         ShoppingCartDTO CreateCart(int id);
         void EditItems(ProductsDTO product);
         IEnumerable<ShoppingCartDTO> GetAllCarts();
         void AddToCart(ProductsDTO products, int id);
+        ShoppingCartDTO GetCartById(int id);
+        ShoppingCartDTO GetShoppingCart(int id);
     }
 }

@@ -13,29 +13,28 @@ namespace Webshop.UI.Pages.Login
     {
         private readonly IDataAccess _dataaccess;
         [BindProperty]
-        public CustomersDTO Customer { get; set; }
+        public CustomersDTO user { get; set; }
+        [BindProperty]
+        public List<CustomersDTO> Users { get; set; }
         public string AlertsCaller { get; set; }
         public string Feedback { get; set; }
-        [BindProperty]
-        public int Id { get; set; }
         public LoginModel(IDataAccess dataaccess)
         {
             _dataaccess = dataaccess;
         }
         public void OnGet()
         {
-            var user = _dataaccess.GetAllCustomers().ToList();
+            Users = _dataaccess.GetAllCustomers().ToList();
         }
 
         public IActionResult OnPostLogin()
         {
             if (ModelState.IsValid) 
             {
-                if (_dataaccess.UserNotFound(Customer.Email, Customer.Password))
+                CustomersDTO customer = _dataaccess.LoginForms(user.Email, user.Password); 
+                if (customer != null)
                 {
-                    AlertsCaller = "alert alert-success";
-                    Feedback = "You have successfully logged in."; 
-                    return RedirectToPage("/StorePage/LoggedinIndex", "Login", new { id = Id});
+                    return RedirectToPage("/StorePage/LoggedinIndex", "Login", new { Id = customer.Id});
                 }
                 else
                 {

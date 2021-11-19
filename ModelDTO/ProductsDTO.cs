@@ -19,7 +19,7 @@ namespace ModelDTO
         [Required]
         public string Name { get; set; }
         [JsonProperty("productid")]
-        public int Id { get; set; }
+        public int id { get; set; }
         [JsonProperty("message")]
         public string Message { get; set; }
     }

@@ -20,7 +20,7 @@ namespace ModelDTO
         [JsonProperty("email")]
         [Required]
         public string Email { get; set; }
-        [JsonProperty("Id")]
-        public int id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
     }
 }
