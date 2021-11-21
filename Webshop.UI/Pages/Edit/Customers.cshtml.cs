@@ -12,18 +12,20 @@ namespace Webshop.UI.Pages.Edit
     public class CustomersModel : PageModel
     {
         private readonly IDataAccess _dataaccess;
-        [BindProperty]
-        public int Id { get; set; }
+        
         public CustomersModel(IDataAccess dataaccess)
         {
             _dataaccess = dataaccess;
         }
+        [BindProperty]
+        public int Id { get; set; }
+        [BindProperty]
         public List<CustomersDTO> Customers { get; set; }
         public void OnGet()
         {
             Customers = _dataaccess.GetAllCustomers().ToList();
         }
-        public IActionResult OnGetEdit()
+        public IActionResult OnPostEdit()
         {
             if (ModelState.IsValid)
             {

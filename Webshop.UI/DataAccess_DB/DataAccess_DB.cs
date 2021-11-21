@@ -33,13 +33,13 @@ namespace Webshop.UI.DataAccess
         public CustomersDTO GetCustomerById(int id)
         {
             var users = GetAllCustomers().ToList();
-            var user = users.Find(user => user.Id == id);
+            var user = users.Single(user => user.Id == id);
             return user;
         }
         public ShoppingCartDTO GetCartById(int id)
         {
             var carts = GetAllCarts().ToList();
-            var findcart = carts.Find(cart => cart.CartId == id);
+            var findcart = carts.Single(cart => cart.CartId == id);
             return findcart;
         }
         public ProductsDTO GetProductById(int id)
@@ -76,26 +76,24 @@ namespace Webshop.UI.DataAccess
             }
             return null;
         }
-        public void AddToCart(ProductsDTO product , int id)
+        public void AddToCart(ProductsDTO product, int id)
         {
+            var shoppingcarts = GetAllCarts().ToList();
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
-            var jsonRead = File.ReadAllText(path);
-            var status = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
-
             var shoppingcart = GetCartById(id);
-            var indexofcart = status.IndexOf(shoppingcart);
+            var indexofcart = shoppingcarts.IndexOf(shoppingcart);
 
             List<ProductsDTO> products = new List<ProductsDTO>();
 
-            foreach (var item in status[indexofcart].CartItems)
+            foreach (var item in shoppingcarts[indexofcart].CartItems)
             {
-                products.Add(new ProductsDTO { id = item.id, Name = item.Name, Price = item.Price, Image = product.Image });
+                products.Add(new ProductsDTO { id = item.id, Name = item.Name, Price = item.Price, Image = item.Image });
             }
 
             products.Add(new ProductsDTO { id = product.id, Name = product.Name, Price = product.Price, Image = product.Image });
 
-            status[indexofcart].CartItems = products;
-            var serialized = JsonConvert.SerializeObject(status);
+            products = shoppingcarts[indexofcart].CartItems;
+            var serialized = JsonConvert.SerializeObject(products);
             File.WriteAllText(path, serialized);
         }
 

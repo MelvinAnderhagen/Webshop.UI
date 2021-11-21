@@ -13,9 +13,10 @@ namespace Webshop.UI.Pages.StorePage
     {
         private readonly IDataAccess _dataaccess;
         [BindProperty]
-        public int id { get; set; }
+        public int Id { get; set; }
         [BindProperty]
         public List<ProductsDTO> Products { get; set; }
+        [BindProperty]
         public ShoppingCartDTO ShoppingCart { get; set; }
         public LoggedinIndexModel(IDataAccess dataaccess)
         {
@@ -42,6 +43,7 @@ namespace Webshop.UI.Pages.StorePage
             {
                 _dataaccess.AddToCart(product, id);
             }
+            
         }
     }
 }
