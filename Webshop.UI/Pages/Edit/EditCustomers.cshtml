@@ -1,0 +1,20 @@
+﻿@page
+@model Webshop.UI.Pages.Edit.EditCustomersModel
+@{
+}
+
+<h1>Edit</h1>
+
+<h3>@Model.Customer.Name</h3>
+
+<form asp-page-handler="Save">
+    <h6>Name: </h6>
+    <input type="text" asp-for="Customer.Name" value="@Model.Customer.Name" />
+    <h6>Email: </h6>
+    <input type="text" asp-for="Customer.Email" value="@Model.Customer.Email" />
+    <h6>Password: </h6>
+    <input type="text" asp-for="Customer.Password" value="@Model.Customer.Password" />
+    <h6>Id: </h6>
+    <input type="text" asp-for="Customer.Id" value="@Model.Customer.Id" />
+    <button type="submit">Save</button>
+</form>

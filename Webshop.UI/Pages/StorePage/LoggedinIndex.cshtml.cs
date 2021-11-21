@@ -12,8 +12,8 @@ namespace Webshop.UI.Pages.StorePage
     public class LoggedinIndexModel : PageModel
     {
         private readonly IDataAccess _dataaccess;
-        public int Id { get; set; }
-        public List<ShoppingCartDTO> Shoppingcarts { get; set; }
+        [BindProperty]
+        public int id { get; set; }
         [BindProperty]
         public List<ProductsDTO> Products { get; set; }
         public ShoppingCartDTO ShoppingCart { get; set; }

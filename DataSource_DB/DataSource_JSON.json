@@ -3,7 +3,7 @@
     "name": "Admin",
     "password": "admin123",
     "email": "admin@admin.se",
-    "id" : 0
+    "id": 0
   },
   {
     "name": "Melvin Anderhagen",
@@ -16,5 +16,11 @@
     "password": "moonwalker",
     "email": "ingrid.kasslersson@hotmail.com",
     "id": 2
+  },
+  {
+    "name": "Mel",
+    "password": "katt",
+    "email": "mel@and.se",
+    "id": 5
   }
 ]

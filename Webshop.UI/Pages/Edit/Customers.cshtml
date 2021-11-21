@@ -1,0 +1,26 @@
+﻿@page
+@model Webshop.UI.Pages.Edit.CustomersModel
+@{
+}
+
+<h1>Customers</h1>
+<br />
+@foreach (var cust in Model.Customers)
+{
+    <div class="text-center">
+        <h6>Email : @cust.Email</h6>
+        <h6>Name : @cust.Name</h6>
+        <h6>Password : @cust.Password</h6>
+        <h6>Id: @cust.Id</h6>
+
+        <form asp-page-handler="Edit">
+            <input type="hidden" asp-for="Id" value="@cust.Id" />
+            <br />
+            <button type="submit">Edit</button>
+            <br />
+        </form>
+    </div>
+
+
+
+}

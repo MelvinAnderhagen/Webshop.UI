@@ -8,12 +8,11 @@ using ModelDTO;
 using Newtonsoft.Json;
 using Webshop.UI.DataAccess;
 
-namespace Webshop.UI.Pages.EditProducts
+namespace Webshop.UI.Pages.Edit
 {
     public class ProductsModel : PageModel
     {
         private readonly IDataAccess _dataaccess;
-        public List<CustomersDTO> Customer { get; set; }
         public ProductsModel(IDataAccess dataaccess)
         {
             _dataaccess = dataaccess;
@@ -25,14 +24,13 @@ namespace Webshop.UI.Pages.EditProducts
         public void OnGet()
         {
             Prods = _dataaccess.GetAllProducts().ToList();
-            Customer = _dataaccess.GetAllCustomers().ToList();
         }
 
         public IActionResult OnPostEdit()
         {
             if (ModelState.IsValid)
             {
-                return RedirectToPage("/EditProducts/EditProduct", "Products", new { id = Id });
+                return RedirectToPage("/Edit/EditProduct", "Products", new { id = Id });
             }
             return Page();
         }

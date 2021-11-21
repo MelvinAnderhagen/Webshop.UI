@@ -32,7 +32,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/ShoppingCart/ShoppingCart">ShoppingCart</a>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/EditProducts/Products">Products</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Edit/Products">Products</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Edit/Customers">Customers</a>
                             </li>
                         </ul>
                     </ul>
@@ -41,13 +43,15 @@
                 {
 
                 }
-                @if (!page.StartsWith("/StorePage/LoggedinIndex") && !page.StartsWith("/EditProducts/Products") && !page.StartsWith("/ShoppingCart/ShoppingCart") && !page.StartsWith("/EditProducts/EditProducts"))
+                @if (!page.StartsWith("/StorePage/LoggedinIndex") && !page.StartsWith("/Edit/Products") && !page.StartsWith("/ShoppingCart/ShoppingCart") && !page.StartsWith("/Edit/EditProducts") && !page.StartsWith("/Edit/EditCustomers") && !page.StartsWith("/Edit/Customers"))
                 {
-                    <ul class="navbar-nav flex-grow-1 justify-content-end">
-                        <li class="nav-item">
-                            <button style="background: white"><a class="nav-link text-dark align-self-end" asp-area="" asp-page="/Login/Login">Login</a></button>
-                        </li>
-                    </ul>
+            <ul class="navbar-nav flex-grow-1 justify-content-end">
+                <li class="nav-item">
+                    <button style="background: white"><a class="nav-link text-dark align-self-end" asp-area="" asp-page="/Register/RegisterNewCustomer">Register</a></button>
+                <li class="nav-item">
+                    <button style="background: white"><a class="nav-link text-dark align-self-end" asp-area="" asp-page="/Login/Login">Login</a></button>
+                </li>
+            </ul>
                 }
                 else if (page.StartsWith("/Login/Login"))
                 {

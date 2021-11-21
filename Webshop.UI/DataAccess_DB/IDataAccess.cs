@@ -11,10 +11,12 @@ namespace Webshop.UI.DataAccess
         CustomersDTO GetCustomerById(int id);
         ProductsDTO GetProductById(int id);
         ShoppingCartDTO CreateCart(int id);
+        void RegisterCustomer(CustomersDTO customer);
         void EditItems(ProductsDTO product);
         IEnumerable<ShoppingCartDTO> GetAllCarts();
-        void AddToCart(ProductsDTO products, int id);
+        void AddToCart(ProductsDTO product, int id);
         ShoppingCartDTO GetCartById(int id);
         ShoppingCartDTO GetShoppingCart(int id);
+        void EditCustomer(CustomersDTO customer);
     }
 }

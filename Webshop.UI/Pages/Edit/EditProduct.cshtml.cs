@@ -8,7 +8,7 @@ using ModelDTO;
 using Newtonsoft.Json;
 using Webshop.UI.DataAccess;
 
-namespace Webshop.UI.Pages.EditProducts
+namespace Webshop.UI.Pages.Edit
 {
     public class EditProductModel : PageModel
     {
@@ -30,7 +30,7 @@ namespace Webshop.UI.Pages.EditProducts
             if (ModelState.IsValid)
             {
                 _dataaccess.EditItems(Product);
-                return RedirectToPage("/EditProducts/Products");
+                return RedirectToPage("/Edit/Products");
             }
             return Page();
         }

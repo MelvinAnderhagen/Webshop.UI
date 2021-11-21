@@ -48,6 +48,22 @@ namespace Webshop.UI.DataAccess
             var product = products.Single(product => product.id == id);
             return product;
         }
+        public void RegisterCustomer(CustomersDTO customer)
+        {
+            var result = GetAllCustomers().ToList();
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_JSON.json";
+            List<CustomersDTO> customers = new List<CustomersDTO>();
+            foreach (var item in result)
+            {
+                customers.Add(new CustomersDTO { Email = item.Email, Name = item.Name, Password = item.Password, Id = item.Id });
+            }
+
+            customers.Add(new CustomersDTO { Email = customer.Email, Name = customer.Name, Password = customer.Password, Id = customer.Id});
+
+            var serizalize = JsonConvert.SerializeObject(customers);
+
+            File.WriteAllText(path, serizalize);
+        }
         public CustomersDTO LoginForms(string email, string password)
         {
             var users = GetAllCustomers().ToList();
@@ -60,21 +76,25 @@ namespace Webshop.UI.DataAccess
             }
             return null;
         }
-        public void AddToCart(ProductsDTO products, int id)
+        public void AddToCart(ProductsDTO product , int id)
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
             var jsonRead = File.ReadAllText(path);
             var status = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
-            var shoppingcartbyid = status.Single(cart => cart.CartId == id);
-            var indexofcart = status.IndexOf(shoppingcartbyid);
-            List<ProductsDTO> product = new List<ProductsDTO>();
+
+            var shoppingcart = GetCartById(id);
+            var indexofcart = status.IndexOf(shoppingcart);
+
+            List<ProductsDTO> products = new List<ProductsDTO>();
+
             foreach (var item in status[indexofcart].CartItems)
             {
-                product.Add(new ProductsDTO { id = item.id, Name = item.Name, Price = item.Price });
+                products.Add(new ProductsDTO { id = item.id, Name = item.Name, Price = item.Price, Image = product.Image });
             }
 
-            product.Add(new ProductsDTO { id = products.id, Name = products.Name, Price = products.Price });
-            status[indexofcart].CartItems = product;
+            products.Add(new ProductsDTO { id = product.id, Name = product.Name, Price = product.Price, Image = product.Image });
+
+            status[indexofcart].CartItems = products;
             var serialized = JsonConvert.SerializeObject(status);
             File.WriteAllText(path, serialized);
         }
@@ -125,6 +145,27 @@ namespace Webshop.UI.DataAccess
             }
 
             var serializedUsers = JsonConvert.SerializeObject(products);
+            File.WriteAllText(path, serializedUsers);
+
+        }
+        public void EditCustomer(CustomersDTO customer)
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_JSON.json";
+            var customers = GetAllCustomers().ToList();
+
+            foreach (var item in customers)
+            {
+                if (item.Id == customer.Id) //If the items id matches with the user id the run the itiration
+                {
+                    var IndexOfUser = customers.IndexOf(item); //Sparar index av item från users i en variabel.
+                    customers[IndexOfUser].Name = customer.Name;
+                    customers[IndexOfUser].Email = customer.Email;
+                    customers[IndexOfUser].Password = customer.Password;
+                    customers[IndexOfUser].Id = customer.Id;
+                }
+            }
+
+            var serializedUsers = JsonConvert.SerializeObject(customers);
             File.WriteAllText(path, serializedUsers);
 
         }

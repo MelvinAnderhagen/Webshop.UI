@@ -1,0 +1,19 @@
+﻿@page
+@model Webshop.UI.Pages.Register.RegisterNewCustomerModel
+@{
+}
+
+<h1>Register Customer</h1>
+
+<form asp-page-handler="Register">
+    <h6>Email: </h6>
+    <input type="text" asp-for="customer.Email" />
+    <h6>Password: </h6>
+    <input type="text" asp-for="customer.Password" />
+    <h6>Name: </h6>
+    <input type="text" asp-for="customer.Name" />
+    <h6>Id: </h6>
+    <input type="text" asp-for="customer.Id" />
+    <br />
+    <button type="submit">Register</button>
+</form>
