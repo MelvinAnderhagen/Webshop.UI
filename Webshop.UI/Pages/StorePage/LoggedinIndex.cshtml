@@ -12,12 +12,10 @@
         <img src="@item.Image" alt="Card image cap" class="img-thumbnail" />
         <h6>Product : @item.Name</h6>
         <h6>Price : @item.Price$</h6>
-        <form>
-            <input type="hidden" asp-for="Id" value="@item.id"/>
-            <br />
-            <button type="submit" class="btn btn-light">Add To Cart</button>
-            <br />
-        </form>
+        <a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-product="@item.id" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="AddToCart">Add To Cart</a>
+        <br />
+        
     </div>
-
 }
+<br />
+<a class="btn btn-light" asp-page="/ShoppingCart/ShoppingCart" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="Checkout">Checkout</a>

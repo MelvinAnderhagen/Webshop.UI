@@ -1,8 +1,27 @@
 ﻿@page
 @model Webshop.UI.Pages.ShoppingCart.ShoppingCartModel
 @{
+    var totalprice = 0;
+    foreach (var item in Model.Cart.CartItems)
+    {
+        totalprice += item.Price;
+    }
 }
 
 <h1>Shopping Cart</h1>
-<h6>-----------------------------</h6>
-<br />
+
+@foreach (var item in Model.Cart.CartItems)
+{
+<div class="text-center">
+    <img src="@item.Image" alt="Alternate Text" />
+    <h6>Name : @item.Name</h6>
+    <h6>Price: @item.Price $</h6>
+    <br />
+    
+</div>
+    
+
+}
+<div class="text-center">
+    <h6>Amount: @totalprice $</h6>
+</div>

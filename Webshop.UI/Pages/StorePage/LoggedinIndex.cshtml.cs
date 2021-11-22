@@ -12,17 +12,15 @@ namespace Webshop.UI.Pages.StorePage
     public class LoggedinIndexModel : PageModel
     {
         private readonly IDataAccess _dataaccess;
-        [BindProperty]
-        public int Id { get; set; }
-        [BindProperty]
+        
         public List<ProductsDTO> Products { get; set; }
-        [BindProperty]
+        
         public ShoppingCartDTO ShoppingCart { get; set; }
         public LoggedinIndexModel(IDataAccess dataaccess)
         {
             _dataaccess = dataaccess;
         }
-        public void OnGetLogin(int id)
+        public void OnGet(int id)
         {
             Products = _dataaccess.GetAllProducts().ToList();
             ShoppingCart = _dataaccess.GetShoppingCart(id);
@@ -35,13 +33,15 @@ namespace Webshop.UI.Pages.StorePage
             {
                 ShoppingCart = _dataaccess.CreateCart(id);
             }
-
         }
-        public void OnGetAddToCart(ProductsDTO product, int id)
+        public void OnGetAddToCart(int id, int product)
         {
             if (ModelState.IsValid)
             {
-                _dataaccess.AddToCart(product, id);
+                ProductsDTO products = _dataaccess.GetProductById(product);
+                _dataaccess.AddToCart(products, id);
+                Products = _dataaccess.GetAllProducts().ToList();
+                ShoppingCart = _dataaccess.GetShoppingCart(id);
             }
             
         }

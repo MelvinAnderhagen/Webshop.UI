@@ -66,37 +66,40 @@ namespace Webshop.UI.DataAccess
         }
         public CustomersDTO LoginForms(string email, string password)
         {
-            var users = GetAllCustomers().ToList();
-            foreach (var item in users)
+            var users = GetAllCustomers().ToList(); //Inputs customer list in users
+            foreach (var item in users) //foreach item in users (goes through the list of customers)
             {
-                if (password == item.Password && email == item.Email)
+                if (password == item.Password && email == item.Email) //If password and email matchs with customer json
                 {
-                    return item;
+                    return item; //return item
                 }
             }
-            return null;
+            return null; //otherwise return null
         }
         public void AddToCart(ProductsDTO product, int id)
         {
-            var shoppingcarts = GetAllCarts().ToList();
+            
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
-            var shoppingcart = GetCartById(id);
-            var indexofcart = shoppingcarts.IndexOf(shoppingcart);
+            var jsonRead = File.ReadAllText(path);
+            var carts = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
+            var shoppingcart = carts.Single(cart => cart.CartId == id);
+            var indexofcart = carts.IndexOf(shoppingcart);
 
             List<ProductsDTO> products = new List<ProductsDTO>();
-
-            foreach (var item in shoppingcarts[indexofcart].CartItems)
+            if (carts[indexofcart].CartItems != null)
             {
-                products.Add(new ProductsDTO { id = item.id, Name = item.Name, Price = item.Price, Image = item.Image });
+                foreach (var item in carts[indexofcart].CartItems)
+                {
+                    products.Add(new ProductsDTO { id = item.id, Name = item.Name, Price = item.Price, Image = item.Image });
+                }
             }
-
+            
             products.Add(new ProductsDTO { id = product.id, Name = product.Name, Price = product.Price, Image = product.Image });
 
-            products = shoppingcarts[indexofcart].CartItems;
-            var serialized = JsonConvert.SerializeObject(products);
+            carts[indexofcart].CartItems = products;
+            var serialized = JsonConvert.SerializeObject(carts);
             File.WriteAllText(path, serialized);
         }
-
         public ShoppingCartDTO CreateCart(int id)
         {
             var CurrentCart = GetAllCarts().ToList(); //Sends in list of type ShoppingCart and saves it in a variable
@@ -110,8 +113,10 @@ namespace Webshop.UI.DataAccess
         }
         public ShoppingCartDTO GetShoppingCart(int id)
         {
-            var CurrentCart = GetAllCarts().ToList(); //Gets a list of type shoppingcartDTO 
-            var ShoppingCart = CurrentCart.Find(cart => cart.CartId == id); //Takes that list and finds cart id
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
+            var jsonRead = File.ReadAllText(path);
+            var CurrentCart = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
+            var ShoppingCart = CurrentCart.SingleOrDefault(cart => cart.CartId == id); //Takes that list and finds cart id
             return ShoppingCart; //Returns id
         }
         

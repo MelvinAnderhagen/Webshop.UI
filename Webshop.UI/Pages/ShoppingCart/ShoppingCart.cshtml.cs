@@ -12,7 +12,7 @@ namespace Webshop.UI.Pages.ShoppingCart
     public class ShoppingCartModel : PageModel
     {
         private readonly IDataAccess _dataaccess;
-
+        [BindProperty]
         public ShoppingCartDTO Cart { get; set; }
         public ShoppingCartModel(IDataAccess dataaccess)
         {
@@ -21,13 +21,8 @@ namespace Webshop.UI.Pages.ShoppingCart
         public void OnGet(int id)
         {
             Cart = _dataaccess.GetShoppingCart(id);
+
         }
-        public void OnGetAddToCart(int id)
-        {
-            if (ModelState.IsValid)
-            {
-                
-            }
-        }
+       
     }
 }
