@@ -22,5 +22,7 @@ namespace ModelDTO
         public string Email { get; set; }
         [JsonProperty("id")]
         public int Id { get; set; }
+        [JsonProperty("CCN")]
+        public int CreditCardNumber { get; set; }
     }
 }

@@ -28,35 +28,14 @@
   {
     "CartItems": [
       {
-        "image": "https://www.elgiganten.se/image/dv_web_D180001002837452/361883/iphone-13-pro-max-5g-smartphone-128gb-graphite.jpg?$digital220x220$",
-        "price": 1000,
-        "productname": "Iphone 13",
-        "productid": 1,
-        "message": null
-      },
-      {
-        "image": "https://www.elgiganten.se/image/dv_web_D180001002493515/194437/goji-10000mah-mini-size-powerbank-rosa.jpg?$prod_all4one$",
-        "price": 100,
-        "productname": "Powerbank",
-        "productid": 2,
-        "message": null
-      },
-      {
         "image": "https://www.elgiganten.se/image/dv_web_D18000100233676/APPLEMLL82ZMA/apple-usb-c-laddningskabel-2-m.jpg?$digital220x220$",
         "price": 50,
         "productname": "Iphone Charger",
         "productid": 3,
         "message": null
-      },
-      {
-        "image": "https://www.elgiganten.se/image/dv_web_D180001002837452/361883/iphone-13-pro-max-5g-smartphone-128gb-graphite.jpg?$digital220x220$",
-        "price": 1000,
-        "productname": "Iphone 13",
-        "productid": 1,
-        "message": null
       }
     ],
-    "cartid": 10
+    "cartid": 3
   },
   {
     "CartItems": [
@@ -68,27 +47,6 @@
         "message": null
       },
       {
-        "image": "https://www.elgiganten.se/image/dv_web_D180001002837452/361883/iphone-13-pro-max-5g-smartphone-128gb-graphite.jpg?$digital220x220$",
-        "price": 1000,
-        "productname": "Iphone 13",
-        "productid": 1,
-        "message": null
-      },
-      {
-        "image": "https://www.elgiganten.se/image/dv_web_D180001002837452/361883/iphone-13-pro-max-5g-smartphone-128gb-graphite.jpg?$digital220x220$",
-        "price": 1000,
-        "productname": "Iphone 13",
-        "productid": 1,
-        "message": null
-      },
-      {
-        "image": "https://www.elgiganten.se/image/dv_web_D18000100233676/APPLEMLL82ZMA/apple-usb-c-laddningskabel-2-m.jpg?$digital220x220$",
-        "price": 50,
-        "productname": "Iphone Charger",
-        "productid": 3,
-        "message": null
-      },
-      {
         "image": "https://www.elgiganten.se/image/dv_web_D180001002493515/194437/goji-10000mah-mini-size-powerbank-rosa.jpg?$prod_all4one$",
         "price": 100,
         "productname": "Powerbank",
@@ -96,6 +54,6 @@
         "message": null
       }
     ],
-    "cartid": 20
+    "cartid": 4
   }
 ]

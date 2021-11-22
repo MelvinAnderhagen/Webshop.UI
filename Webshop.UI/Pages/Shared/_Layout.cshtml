@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 @{
-    string page = ViewContext.RouteData.Values["page"] as string;
+        string page = ViewContext.RouteData.Values["page"] as string;
+
 }
  
 <body>
@@ -37,11 +38,9 @@
                         </ul>
                     </ul>
                 }
-                else
-                {
+                
 
-                }
-                @if (!page.StartsWith("/StorePage/LoggedinIndex") && !page.StartsWith("/Edit/Products") && !page.StartsWith("/ShoppingCart/ShoppingCart") && !page.StartsWith("/Edit/EditProducts") && !page.StartsWith("/Edit/EditCustomers") && !page.StartsWith("/Edit/Customers"))
+                @if (!page.StartsWith("/Checkout/Checkout") && !page.StartsWith("/StorePage/LoggedinIndex") && !page.StartsWith("/Edit/Products") && !page.StartsWith("/Edit/EditProducts") && !page.StartsWith("/Edit/EditCustomers") && !page.StartsWith("/Edit/Customers"))
                 {
             <ul class="navbar-nav flex-grow-1 justify-content-end">
                 <li class="nav-item">
@@ -51,10 +50,6 @@
                     <button style="background: white"><a class="nav-link text-dark align-self-end" asp-area="" asp-page="/Login/Login">Login</a></button>
                 </li>
             </ul>
-                }
-                else if (page.StartsWith("/Login/Login"))
-                {
-
                 }
                 else
                 {

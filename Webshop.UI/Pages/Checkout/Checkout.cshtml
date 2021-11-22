@@ -1,0 +1,21 @@
+﻿@page
+@model Webshop.UI.Pages.Checkout.CheckoutModel
+@{
+}
+
+@foreach (var item in Model.Cart.CartItems)
+{
+<div class="text-center">
+    <img src="@item.Image" alt="Alternate Text" />
+    <h6>Name : @item.Name</h6>
+    <h6>Price: @item.Price $</h6>
+    <br />
+</div>
+}
+
+<div class="text-center">
+    <label asp-for="user.CreditCardNumber">Creditcard number: </label>
+    <input asp-for="user.CreditCardNumber" class="form-control">
+    <br />
+    <a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-id="@Model.Cart.CartId" asp-page-handler="Pay">Pay</a>
+</div>

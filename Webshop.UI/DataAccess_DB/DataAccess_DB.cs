@@ -1,4 +1,5 @@
-﻿using ModelDTO;
+﻿using Card;
+using ModelDTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,38 @@ namespace Webshop.UI.DataAccess
 {
     public class DataAccess_DB : IDataAccess
     {
-        
+        public void SaveRecipt(ShoppingCartDTO cartitems, int id)
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.jsonn";
+            var jsonRead = File.ReadAllText(path);
+            var order = JsonConvert.DeserializeObject<List<OrderDTO>>(jsonRead);
+            var shoppingcart = order.Single(cart => cart.RecieptId == id);
+            var indexofcart = order.IndexOf(shoppingcart);
+
+            List<ProductsDTO> reciept = new List<ProductsDTO>();
+
+            foreach (var item in order[indexofcart].Items)
+            {
+                reciept.Add(new ProductsDTO {Name = item.Name, Price = item.Price, id = item.id });
+            }
+
+            order[indexofcart].Items = reciept;
+
+            var serialize = JsonConvert.SerializeObject(order);
+            File.WriteAllText(path, serialize);
+        }
+        public CustomersDTO CardForms(int ccn)
+        {
+            var cust = GetAllCustomers().ToList();
+            foreach (var item in cust)
+            {
+                if (item.CreditCardNumber == ccn)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
         public IEnumerable<ShoppingCartDTO> GetAllCarts()
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
@@ -23,7 +55,6 @@ namespace Webshop.UI.DataAccess
             var jsonResponse = File.ReadAllText(path);
             return JsonConvert.DeserializeObject<IEnumerable<CustomersDTO>>(jsonResponse);
         }
-
         public IEnumerable<ProductsDTO> GetAllProducts()
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Products.json";
@@ -69,7 +100,7 @@ namespace Webshop.UI.DataAccess
             var users = GetAllCustomers().ToList(); //Inputs customer list in users
             foreach (var item in users) //foreach item in users (goes through the list of customers)
             {
-                if (password == item.Password && email == item.Email) //If password and email matchs with customer json
+                if (password == item.Password && email == item.Email) //If password and email matches with customer json
                 {
                     return item; //return item
                 }

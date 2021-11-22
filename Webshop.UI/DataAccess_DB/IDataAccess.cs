@@ -1,10 +1,13 @@
-﻿using ModelDTO;
+﻿using Card;
+using ModelDTO;
 using System.Collections.Generic;
 
 namespace Webshop.UI.DataAccess
 {
     public interface IDataAccess
     {
+        void SaveRecipt(ShoppingCartDTO cartitems, int id);
+        CustomersDTO CardForms(int ccn);
         IEnumerable<CustomersDTO> GetAllCustomers();
         IEnumerable<ProductsDTO> GetAllProducts();
         CustomersDTO LoginForms(string email, string password);

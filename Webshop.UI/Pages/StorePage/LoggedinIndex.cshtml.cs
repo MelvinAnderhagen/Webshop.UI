@@ -45,5 +45,13 @@ namespace Webshop.UI.Pages.StorePage
             }
             
         }
+        public IActionResult OnPostGoBack()
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToPage("/StorePage/LoggedinIndex", "ShoppingCart");
+            }
+            return Page();
+        }
     }
 }

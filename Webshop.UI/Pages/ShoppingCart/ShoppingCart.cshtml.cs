@@ -21,7 +21,6 @@ namespace Webshop.UI.Pages.ShoppingCart
         public void OnGet(int id)
         {
             Cart = _dataaccess.GetShoppingCart(id);
-
         }
        
     }

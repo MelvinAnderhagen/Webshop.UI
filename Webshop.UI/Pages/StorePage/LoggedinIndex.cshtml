@@ -6,6 +6,10 @@
 <h1>Products</h1>
 <br />
 
+<div class="text-center">
+    <a class="btn btn-light" asp-page="/ShoppingCart/ShoppingCart" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="Checkout">Checkout</a>
+</div>
+<br />
 @foreach (var item in Model.Products)
 {
     <div asp-page-handler="Index" class="text-center">
@@ -17,5 +21,6 @@
         
     </div>
 }
-<br />
-<a class="btn btn-light" asp-page="/ShoppingCart/ShoppingCart" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="Checkout">Checkout</a>
+
+
+
