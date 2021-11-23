@@ -18,22 +18,25 @@ namespace Webshop.UI.Pages.Checkout
         {
             _dataaccess = dataaccess;
         }
-        public int id { get; set; }
+        [BindProperty]
         public CustomersDTO user { get; set; }
+        [BindProperty]
         public ShoppingCartDTO Cart { get; set; }
         public void OnGet(int id)
         {
             Cart = _dataaccess.GetShoppingCart(id);
-            user = _dataaccess.GetCustomerById(id);
+            
         }
-        public IActionResult OnGetPay(int ccn, int products)
+        public IActionResult OnPostPay(int id)
         {
-            if (ModelState.IsValid)
+            if (_dataaccess.CardForms(user.CreditCardNumber))
             {
-                _dataaccess.CardForms(ccn);
-                _dataaccess.SaveRecipt(products);
+                _dataaccess.SaveRecipt(id);
+
                 return RedirectToPage("/StorePage/LoggedinIndex");
             }
+            Cart = _dataaccess.GetShoppingCart(id);
+            
             return Page();
         }
     }

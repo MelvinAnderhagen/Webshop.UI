@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelDTO
 {
-    public class OrderDTO
+    public class RecieptDTO
     {
         [JsonProperty("items")]
         public List<ProductsDTO> Items { get; set; }

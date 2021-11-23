@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Webshop.UI.DataAccess
 {
@@ -14,7 +13,8 @@ namespace Webshop.UI.DataAccess
         private List<ProductsDTO> _productslist;
         public void SaveRecipt(int id)
         {
-            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
+            var path1 = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
             var jsonRead = File.ReadAllText(path);
             var carts = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
             var shoppingcart = carts.Single(cart => cart.CartId == id);
@@ -22,27 +22,22 @@ namespace Webshop.UI.DataAccess
 
             List<ProductsDTO> reciepts = new List<ProductsDTO>();
 
-            foreach (var item in carts[indexofcart].CartItems)
-            {
-                reciepts.Add(new ProductsDTO { id = item.id, Name = item.Name, Price = item.Price, Image = item.Image });
-            }
+            reciepts = carts[indexofcart].CartItems;
 
-            carts[indexofcart].CartItems = reciepts;
-
-            var serialize = JsonConvert.SerializeObject(carts);
-            File.WriteAllText(path, serialize);
+            var serialize = JsonConvert.SerializeObject(reciepts);
+            File.WriteAllText(path1, serialize);
         }
-        public CustomersDTO CardForms(int ccn)
+        public bool CardForms(int ccn)
         {
             var cust = GetAllCustomers().ToList();
-            foreach (var item in cust)
+            foreach (var user in cust)
             {
-                if (item.CreditCardNumber == ccn)
+                if (ccn == user.CreditCardNumber)
                 {
-                    return item;
+                    return true;
                 }
             }
-            return null;
+            return false;
         }
         public IEnumerable<ShoppingCartDTO> GetAllCarts()
         {
@@ -226,5 +221,6 @@ namespace Webshop.UI.DataAccess
             products.Sort();
             return products;
         }
+        
     }
 }

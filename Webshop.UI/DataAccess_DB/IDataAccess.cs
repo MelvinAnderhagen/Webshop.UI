@@ -6,12 +6,13 @@ namespace Webshop.UI.DataAccess
 {
     public interface IDataAccess
     {
+        
         List<ProductsDTO> MinPrice();
         List<ProductsDTO> MaxPrice();
         IEnumerable<ProductsDTO> Search(string searchTerm);
         void ClearCartById(int id);
         void SaveRecipt(int id);
-        CustomersDTO CardForms(int ccn);
+        bool CardForms(int ccn);
         IEnumerable<CustomersDTO> GetAllCustomers();
         IEnumerable<ProductsDTO> GetAllProducts();
         CustomersDTO LoginForms(string email, string password);
