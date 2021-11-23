@@ -34,6 +34,13 @@ namespace Webshop.UI.Pages.StorePage
                 ShoppingCart = _dataaccess.CreateCart(id);
             }
         }
+        public void OnGetClearCart()
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+        }
         public void OnGetAddToCart(int id, int product)
         {
             if (ModelState.IsValid)

@@ -150,13 +150,13 @@ namespace Webshop.UI.DataAccess
             var ShoppingCart = CurrentCart.SingleOrDefault(cart => cart.CartId == id); //Takes that list and finds cart id
             return ShoppingCart; //Returns id
         }
-        
+ 
         public void ClearCartById(int id)
         {
-            var status = GetAllCarts().ToList(); //Injecting list of type shoppingcart
+            var status = GetAllCarts().ToList(); //Saves Cartlist in variable named status
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
 
-            var cart = status.Find(cart => cart.CartId == id); //Finding exact item using Id
+            var cart = status.Single(cart => cart.CartId == id); 
             var update = status.IndexOf(cart); //Making a variable with the index of that Id
             status[update].CartItems = null; //Making that value become null. 
             var serialized = JsonConvert.SerializeObject(status); 

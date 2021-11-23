@@ -2,31 +2,72 @@
 @model Webshop.UI.Pages.ShoppingCart.ShoppingCartModel
 @{
     var totalprice = 0;
-    foreach (var item in Model.Cart.CartItems)
+    @if (Model.Cart.CartItems != null)
     {
-        totalprice += item.Price;
+        foreach (var item in Model.Cart.CartItems)
+        {
+            totalprice += item.Price;
+        }
     }
+    else
+    {
+        totalprice = 0;
+    }
+
 }
+
+
 
 <h1>Shopping Cart</h1>
-
-@foreach (var item in Model.Cart.CartItems)
+<br />
+@if (totalprice == 0)
 {
-    <div class="text-center">
-        <img src="@item.Image" alt="Alternate Text" />
-        <h6>Name : @item.Name</h6>
-        <h6>Price: @item.Price $</h6>
-        <br />
-
-    </div>
-
 
 }
+else
+{
+    
+    <a class="btn btn-light" asp-route-id="@Model.Cart.CartId" asp-page-handler="ClearCart">Clear Cart</a>
+}
+<br />
+@if (Model.Cart.CartItems != null)
+{
+    @foreach (var item in Model.Cart.CartItems)
+    {
+        <div class="text-center">
+            <img src="@item.Image" alt="Alternate Text" />
+            <h6>Name : @item.Name</h6>
+            <h6>Price: @item.Price $</h6>
+            <br />
+
+        </div>
+
+
+    }
+}
+else
+{
+    <br />
+    <div class="text-center">
+        <h3>You have nothing in the basket</h3>
+        <br />
+    </div>
+
+}
+
 <div class="text-center"><h6>Amount: @totalprice $</h6></div>
 
 <br />
-    <div class="text-center">
-        <a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-id="@Model.Cart.CartId" asp-page-handler="GoBack">Go Back</a>
+<div class="text-center">
+    <a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-id="@Model.Cart.CartId" asp-page-handler="GoBack">Go Back</a>
+    @if (totalprice == 0)
+    {
+
+    }
+    else
+    {
         <a class="btn btn-light" asp-page="/Checkout/Checkout" asp-route-id="@Model.Cart.CartId" asp-page-handler="Checkout">Checkout</a>
-    </div>
+    }
+
+</div>
 

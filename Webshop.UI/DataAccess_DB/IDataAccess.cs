@@ -6,6 +6,7 @@ namespace Webshop.UI.DataAccess
 {
     public interface IDataAccess
     {
+        void ClearCartById(int id);
         void SaveRecipt(ShoppingCartDTO cartitems, int id);
         CustomersDTO CardForms(int ccn);
         IEnumerable<CustomersDTO> GetAllCustomers();

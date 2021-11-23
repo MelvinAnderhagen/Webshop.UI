@@ -22,6 +22,14 @@ namespace Webshop.UI.Pages.ShoppingCart
         {
             Cart = _dataaccess.GetShoppingCart(id);
         }
-       
+       public void OnGetClearCart(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Cart = _dataaccess.GetShoppingCart(id);
+                _dataaccess.ClearCartById(id);
+            }
+
+        }
     }
 }
