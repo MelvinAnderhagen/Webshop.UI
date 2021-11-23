@@ -21,23 +21,29 @@ namespace Webshop.UI.DataAccess
             var indexofcart = carts.IndexOf(shoppingcart);
 
             List<ProductsDTO> reciepts = new List<ProductsDTO>();
-
+            
             reciepts = carts[indexofcart].CartItems;
 
             var serialize = JsonConvert.SerializeObject(reciepts);
             File.WriteAllText(path1, serialize);
         }
-        public bool CardForms(int ccn)
+        public bool CardForms(string ccn, int sc)
         {
-            var cust = GetAllCustomers().ToList();
-            foreach (var user in cust)
+            var cards = GetAllCards().ToList();
+            foreach (var card in cards)
             {
-                if (ccn == user.CreditCardNumber)
+                if (ccn == card.CreditCardNumber && sc == card.SecurityCode)
                 {
                     return true;
                 }
             }
             return false;
+        }
+        public IEnumerable<RecieptDTO> GetAllReciepts()
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
+            var jsonRead = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<IEnumerable<RecieptDTO>>(jsonRead);
         }
         public IEnumerable<ShoppingCartDTO> GetAllCarts()
         {
@@ -127,6 +133,17 @@ namespace Webshop.UI.DataAccess
             var serialized = JsonConvert.SerializeObject(carts);
             File.WriteAllText(path, serialized);
         }
+        public RecieptDTO CreateReciept(int id)
+        {
+            var Reciepts = GetAllReciepts().ToList(); 
+            RecieptDTO reciept = new RecieptDTO();
+            reciept.RecieptId = id;
+            Reciepts.Add(reciept);
+            var serializeobject = JsonConvert.SerializeObject(Reciepts);
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
+            File.WriteAllText(path, serializeobject);
+            return reciept;
+        }
         public ShoppingCartDTO CreateCart(int id)
         {
             var CurrentCart = GetAllCarts().ToList(); //Sends in list of type ShoppingCart and saves it in a variable
@@ -146,7 +163,6 @@ namespace Webshop.UI.DataAccess
             var ShoppingCart = CurrentCart.SingleOrDefault(cart => cart.CartId == id); //Takes that list and finds cart id
             return ShoppingCart; //Returns id
         }
- 
         public void ClearCartById(int id)
         {
             var status = GetAllCarts().ToList(); //Saves Cartlist in variable named status
@@ -199,7 +215,6 @@ namespace Webshop.UI.DataAccess
             File.WriteAllText(path, serializedUsers);
 
         }
-
         public IEnumerable<ProductsDTO> Search(string searchTerm)
         {
             if (string.IsNullOrEmpty(searchTerm))
@@ -221,6 +236,14 @@ namespace Webshop.UI.DataAccess
             products.Sort();
             return products;
         }
+
+        public IEnumerable<CreditCard> GetAllCards()
+        {
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\Card_DataSource.json";
+            var jsonresponse = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<IEnumerable<CreditCard>>(jsonresponse);
+        }
+
         
     }
 }

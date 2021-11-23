@@ -19,24 +19,35 @@ namespace Webshop.UI.Pages.Checkout
             _dataaccess = dataaccess;
         }
         [BindProperty]
-        public CustomersDTO user { get; set; }
+        public CreditCard card { get; set; }
+        public string Feedback { get; set; }
+        public string Alert { get; set; }
         [BindProperty]
         public ShoppingCartDTO Cart { get; set; }
         public void OnGet(int id)
         {
             Cart = _dataaccess.GetShoppingCart(id);
-            
         }
         public IActionResult OnPostPay(int id)
         {
-            if (_dataaccess.CardForms(user.CreditCardNumber))
+            if (ModelState.IsValid)
             {
-                _dataaccess.SaveRecipt(id);
-
-                return RedirectToPage("/StorePage/LoggedinIndex");
+                if (_dataaccess.CardForms(card.CreditCardNumber, card.SecurityCode))
+                {
+                    _dataaccess.CreateReciept(id);
+                    _dataaccess.SaveRecipt(id);
+                    _dataaccess.ClearCartById(id);
+                    return RedirectToPage("/StorePage/LoggedinIndex");
+                }
+                else if (!_dataaccess.CardForms(card.CreditCardNumber, card.SecurityCode))
+                {
+                    Feedback = "Invalid creditcard number or security code";
+                    Alert = "alert alert-danger";
+                }
+                
             }
             Cart = _dataaccess.GetShoppingCart(id);
-            
+
             return Page();
         }
     }

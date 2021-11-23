@@ -6,13 +6,13 @@ namespace Webshop.UI.DataAccess
 {
     public interface IDataAccess
     {
-        
+        IEnumerable<CreditCard> GetAllCards();
         List<ProductsDTO> MinPrice();
         List<ProductsDTO> MaxPrice();
         IEnumerable<ProductsDTO> Search(string searchTerm);
         void ClearCartById(int id);
         void SaveRecipt(int id);
-        bool CardForms(int ccn);
+        bool CardForms(string ccn, int sc);
         IEnumerable<CustomersDTO> GetAllCustomers();
         IEnumerable<ProductsDTO> GetAllProducts();
         CustomersDTO LoginForms(string email, string password);
@@ -26,5 +26,7 @@ namespace Webshop.UI.DataAccess
         ShoppingCartDTO GetCartById(int id);
         ShoppingCartDTO GetShoppingCart(int id);
         void EditCustomer(CustomersDTO customer);
+        RecieptDTO CreateReciept(int id);
+        
     }
 }

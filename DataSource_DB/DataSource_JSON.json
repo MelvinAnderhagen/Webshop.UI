@@ -3,56 +3,42 @@
     "name": "Admin",
     "password": "admin123",
     "email": "admin@admin.se",
-    "id": 0,
-    "CCN": 893271,
-    "money": 200
+    "id": 0
   },
   {
     "name": "Melvin Anderhagen",
     "password": "hundenkattenglassen",
     "email": "melvin.anderhagen@gmail.com",
-    "id": 1,
-    "CCN": 912736,
-    "money": 200
+    "id": 1
   },
   {
     "name": "Ingrid Kasslersson",
     "password": "moonwalker",
     "email": "ingrid.kasslersson@hotmail.com",
-    "id": 2,
-    "CCN": 762582,
-    "money": 200
+    "id": 2
   },
   {
     "name": "Mel",
     "password": "katten",
     "email": "mel@and.se",
-    "id": 3,
-    "CCN": 817623,
-    "money": 200
+    "id": 3
   },
   {
     "name": "Elias pingpong",
     "password": "123",
     "email": "elias@jakobsson.com",
-    "id": 4,
-    "CCN": 198273,
-    "money": 200
+    "id": 4
   },
   {
     "name": "Mel",
     "password": "hund",
     "email": "pol@and.se",
-    "id": 5,
-    "CCN": 817221,
-    "money": 200
+    "id": 5
   },
   {
     "name": "Za",
     "password": "123",
     "email": "zzache@gmail.com",
-    "id": 6,
-    "CCN": 192912,
-    "money": 200
+    "id": 6
   }
 ]

@@ -9,7 +9,10 @@ namespace Card
 {
     public class CreditCard
     {
-        
+        [JsonProperty("ccn")]
+        public string CreditCardNumber { get; set; }
+        [JsonProperty("securitycode")]
+        public int SecurityCode { get; set; }
         [JsonProperty("money")]
         public int Money { get; set; }
     }

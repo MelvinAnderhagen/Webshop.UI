@@ -1,11 +1,12 @@
 ﻿@page
 @model Webshop.UI.Pages.Checkout.CheckoutModel
 @{
-    @*var totalprice = 0;
+    var totalprice = 0;
     @foreach (var item in Model.Cart.CartItems)
     {
         totalprice += item.Price;
-    }*@
+    }
+    
 
 }
 
@@ -18,12 +19,21 @@
     <br />
     <form asp-page-handler="Pay" asp-route-id="@Model.Cart.CartId">
         <div class="form-group">
-            <label asp-for="user.CreditCardNumber">Creditcart number: </label>
-            <input asp-for="user.CreditCardNumber" class="form-control">
+            <label asp-for="card.CreditCardNumber">Creditcart number: </label>
+            <input asp-for="card.CreditCardNumber" class="form-control">
+            <br />
+            <label asp-for="card.SecurityCode">Security code: </label>
+            <input asp-for="card.SecurityCode" class="form-control">
         </div>
-
+        <br />
+        <span asp-validation-for="card.CreditCardNumber" class=@Model.Alert role="alert"> @Model.Feedback </span>
+        <br />  
+        
         <br />
         <button type="submit" class="btn btn-white">Pay</button>
+        <br />
+        <br />
+        <h6>Total cost: @totalprice $</h6>
     </form>
 
 
