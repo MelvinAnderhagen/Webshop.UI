@@ -3,6 +3,19 @@
 @{
 }
 
+<form method="get">
+    <div class="input-group-append">
+        <input class="form-control" asp-for="SearchTerm">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+<br />
+<a class="btn btn-light" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="SortMax">Max</a>
+<a class="btn btn-light" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="SortMin">Min</a>
+<br />
+<br />  
 <h1>Products</h1>
 <br />
 

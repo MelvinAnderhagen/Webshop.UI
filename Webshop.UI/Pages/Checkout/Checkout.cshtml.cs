@@ -26,14 +26,13 @@ namespace Webshop.UI.Pages.Checkout
             Cart = _dataaccess.GetShoppingCart(id);
             user = _dataaccess.GetCustomerById(id);
         }
-        public IActionResult OnPostPay(int ccn, int id, int products)
+        public IActionResult OnGetPay(int ccn, int products)
         {
             if (ModelState.IsValid)
             {
-                ShoppingCartDTO cart = _dataaccess.GetShoppingCart(id);
                 _dataaccess.CardForms(ccn);
-                _dataaccess.SaveRecipt(cart, products);
-                return RedirectToPage("/StorePage/LoggedinIndex", new { Id = id });
+                _dataaccess.SaveRecipt(products);
+                return RedirectToPage("/StorePage/LoggedinIndex");
             }
             return Page();
         }

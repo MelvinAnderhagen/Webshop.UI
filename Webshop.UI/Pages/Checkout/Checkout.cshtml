@@ -17,5 +17,6 @@
     <label asp-for="user.CreditCardNumber">Creditcard number: </label>
     <input asp-for="user.CreditCardNumber" class="form-control">
     <br />
-    <a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-id="@Model.Cart.CartId" asp-page-handler="Pay">Pay</a>
+    <a class="btn btn-light" asp-route-id="@Model.Cart.CartId" asp-page-handler="Pay">Pay</a>
+    <a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-id="@Model.Cart.CartId" asp-page-handler="GoBack">Go Back</a>
 </div>

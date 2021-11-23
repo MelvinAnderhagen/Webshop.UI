@@ -11,8 +11,6 @@ namespace ModelDTO
     {
         [JsonProperty("items")]
         public List<ProductsDTO> Items { get; set; }
-        [JsonProperty("cost")]
-        public int Price { get; set; }
         [JsonProperty("ispaid")]
         public bool isPaid { get; set; }
         [JsonProperty("recieptid")]

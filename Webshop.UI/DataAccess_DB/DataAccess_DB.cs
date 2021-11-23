@@ -11,24 +11,25 @@ namespace Webshop.UI.DataAccess
 {
     public class DataAccess_DB : IDataAccess
     {
-        public void SaveRecipt(ShoppingCartDTO cartitems, int id)
+        private List<ProductsDTO> _productslist;
+        public void SaveRecipt(int id)
         {
-            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.jsonn";
+            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
             var jsonRead = File.ReadAllText(path);
-            var order = JsonConvert.DeserializeObject<List<OrderDTO>>(jsonRead);
-            var shoppingcart = order.Single(cart => cart.RecieptId == id);
-            var indexofcart = order.IndexOf(shoppingcart);
+            var carts = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
+            var shoppingcart = carts.Single(cart => cart.CartId == id);
+            var indexofcart = carts.IndexOf(shoppingcart);
 
-            List<ProductsDTO> reciept = new List<ProductsDTO>();
+            List<ProductsDTO> reciepts = new List<ProductsDTO>();
 
-            foreach (var item in order[indexofcart].Items)
+            foreach (var item in carts[indexofcart].CartItems)
             {
-                reciept.Add(new ProductsDTO {Name = item.Name, Price = item.Price, id = item.id });
+                reciepts.Add(new ProductsDTO { id = item.id, Name = item.Name, Price = item.Price, Image = item.Image });
             }
 
-            order[indexofcart].Items = reciept;
+            carts[indexofcart].CartItems = reciepts;
 
-            var serialize = JsonConvert.SerializeObject(order);
+            var serialize = JsonConvert.SerializeObject(carts);
             File.WriteAllText(path, serialize);
         }
         public CustomersDTO CardForms(int ccn)
@@ -202,6 +203,28 @@ namespace Webshop.UI.DataAccess
             var serializedUsers = JsonConvert.SerializeObject(customers);
             File.WriteAllText(path, serializedUsers);
 
+        }
+
+        public IEnumerable<ProductsDTO> Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return _productslist;
+            }
+            return _productslist.Where(e => e.Name.Contains(searchTerm));
+        }
+        public List<ProductsDTO> MinPrice()
+        {
+            var products = GetAllProducts().ToList();
+            products.Sort((x, y) => x.Price.CompareTo(y.Price));
+            return products;
+        }
+        public List<ProductsDTO> MaxPrice()
+        {
+            var products = GetAllProducts().ToList();
+            products.Reverse();
+            products.Sort();
+            return products;
         }
     }
 }

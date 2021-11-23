@@ -14,7 +14,11 @@ namespace Webshop.UI.Pages.StorePage
         private readonly IDataAccess _dataaccess;
         
         public List<ProductsDTO> Products { get; set; }
-        
+        [BindProperty]
+        public IEnumerable<ProductsDTO> product { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
         public ShoppingCartDTO ShoppingCart { get; set; }
         public LoggedinIndexModel(IDataAccess dataaccess)
         {
@@ -24,6 +28,7 @@ namespace Webshop.UI.Pages.StorePage
         {
             Products = _dataaccess.GetAllProducts().ToList();
             ShoppingCart = _dataaccess.GetShoppingCart(id);
+            product = _dataaccess.Search(SearchTerm);
 
             if (ShoppingCart != null)
             {
@@ -59,6 +64,15 @@ namespace Webshop.UI.Pages.StorePage
                 return RedirectToPage("/StorePage/LoggedinIndex", "ShoppingCart");
             }
             return Page();
+        }
+        public void OnGetMax()
+        {
+            Products = _dataaccess.MaxPrice();
+        }
+        public void OnGetSortMin(int id)
+        {
+            ShoppingCart = _dataaccess.GetShoppingCart(id);
+            Products = _dataaccess.MinPrice();
         }
     }
 }
