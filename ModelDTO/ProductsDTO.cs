@@ -13,10 +13,8 @@ namespace ModelDTO
         [JsonProperty("image")]
         public string Image { get; set; }
         [JsonProperty("price")]
-        [Required]
         public int Price { get; set; }
         [JsonProperty("productname")]
-        [Required]
         public string Name { get; set; }
         [JsonProperty("productid")]
         public int id { get; set; }

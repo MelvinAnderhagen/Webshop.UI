@@ -20,7 +20,6 @@ namespace Webshop.UI.Pages.Checkout
         public RecieptDTO Receipt { get; set; }
         public void OnGet(int id)
         {
-           
             Receipt = _dataaccess.GetRecieptById(id);
         }
         

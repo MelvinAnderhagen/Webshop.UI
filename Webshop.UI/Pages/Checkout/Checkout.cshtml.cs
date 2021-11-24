@@ -36,7 +36,7 @@ namespace Webshop.UI.Pages.Checkout
                 {
                     _dataaccess.SaveRecipt(id);
                     _dataaccess.ClearCartById(id);
-                    return RedirectToPage("/StorePage/LoggedinIndex");
+                    return RedirectToPage("/Checkout/RecieptHistory");
                 }
                 else if (!_dataaccess.CardForms(card.CreditCardNumber, card.SecurityCode))
                 {

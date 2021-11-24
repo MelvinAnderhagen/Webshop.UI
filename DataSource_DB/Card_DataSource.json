@@ -1,8 +1,7 @@
 [
   {
     "ccn": "918263213",
-    "securitycode": 912,
-    "money": 2000
+    "securitycode": 912
   },
   {
     "ccn": "234674567",
@@ -11,12 +10,10 @@
   },
   {
     "ccn": "123934512",
-    "securitycode": 125,
-    "money": 6500
+    "securitycode": 125
   },
   {
     "ccn": "879612376",
-    "securitycode": 324,
-    "money": 9999
+    "securitycode": 324
   }
 ]

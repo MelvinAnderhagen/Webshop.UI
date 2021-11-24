@@ -10,10 +10,11 @@
 <br />
 <a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-id="@Model.Receipt.UserId" asp-page-handler="GoBack">Go Back</a>
 <br />
-<h1>Receipt history</h1>
 <br />
+<h1>Payment Successful!</h1>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
+        
         @foreach (var item in Model.Receipt.Items)
         {
             <h6>@item.Name</h6>
