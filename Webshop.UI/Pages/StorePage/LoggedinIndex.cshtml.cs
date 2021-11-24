@@ -17,7 +17,6 @@ namespace Webshop.UI.Pages.StorePage
         public List<ProductsDTO> Products { get; set; }
         [BindProperty]
         public ProductsDTO product { get; set; }
-        public SelectList Price { get; set; }
         [BindProperty(SupportsGet = true)]
         public string productname { get; set; }
         public ShoppingCartDTO ShoppingCart { get; set; }
@@ -25,33 +24,9 @@ namespace Webshop.UI.Pages.StorePage
         {
             _dataaccess = dataaccess;
         }
-        //public void OnGet(int id)
-        //{
-        //    Products = _dataaccess.GetAllProducts().ToList();
-        //    var cart = _dataaccess.GetAllCarts().ToList().SingleOrDefault(cart => cart.CartId == id);
-
-        //    if (cart != null)
-        //    {
-        //        ShoppingCart = _dataaccess.GetCartById(id);
-        //    }
-        //    else
-        //    {
-        //        ShoppingCart = _dataaccess.CreateCart(id);
-        //    }
-        //}
-        public IActionResult OnGetAsync(string productname, int id)
+        public void OnGet(int id)
         {
             Products = _dataaccess.GetAllProducts().ToList();
-            
-            if (string.IsNullOrEmpty(productname))
-            {
-                RedirectToPage("/index");
-            }
-            else
-            {
-                Products = Products.Where(p => p.Name.ToLower().Contains(productname.ToLower())).ToList();
-            }
-            
             var cart = _dataaccess.GetAllCarts().ToList().SingleOrDefault(cart => cart.CartId == id);
 
             if (cart != null)
@@ -62,7 +37,18 @@ namespace Webshop.UI.Pages.StorePage
             {
                 ShoppingCart = _dataaccess.CreateCart(id);
             }
-            return Page();
+        }
+        public void OnGetSearch(string productname, int id)
+        {
+            Products = _dataaccess.GetAllProducts().ToList();
+            ShoppingCart = _dataaccess.GetShoppingCart(id);
+
+            if (!string.IsNullOrEmpty(productname))
+            {
+                Products = Products.Where(p => p.Name.ToLower().Contains(productname.ToLower())).ToList();
+                ShoppingCart = _dataaccess.GetShoppingCart(id);
+            }
+            
         }
         public void OnGetAddToCart(int id, int product)
         {
@@ -83,8 +69,9 @@ namespace Webshop.UI.Pages.StorePage
             }
             return Page();
         }
-        public void OnGetMax()
+        public void OnGetMax(int id)
         {
+            ShoppingCart = _dataaccess.GetShoppingCart(id);
             Products = _dataaccess.MaxPrice();
         }
         public void OnGetSortMin(int id)

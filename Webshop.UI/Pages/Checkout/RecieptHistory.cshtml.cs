@@ -17,10 +17,10 @@ namespace Webshop.UI.Pages.Checkout
         {
             _dataaccess = dataaccess;
         }
-        public RecieptDTO Receipt { get; set; }
+        public ShoppingCartDTO Cart { get; set; }
         public void OnGet(int id)
         {
-            Receipt = _dataaccess.GetRecieptById(id);
+            Cart = _dataaccess.GetShoppingCart(id);
         }
         
     }

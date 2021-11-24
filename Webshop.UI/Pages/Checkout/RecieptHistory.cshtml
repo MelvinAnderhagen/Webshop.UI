@@ -1,28 +1,26 @@
 ﻿@page
 @model Webshop.UI.Pages.Checkout.RecieptHistoryModel
 @{
-    var totalprice = 0;
-    foreach (var item in Model.Receipt.Items)
-    {
-        totalprice += item.Price;
-    }
+//var totalprice = 0;
+//foreach (var item in Model.Receipt.Items)
+//{
+//    totalprice += item.Price;
+//}
 }
 <br />
-<a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-id="@Model.Receipt.UserId" asp-page-handler="GoBack">Go Back</a>
+<a class="btn btn-light" asp-page="/StorePage/LoggedinIndex" asp-route-id="@Model.Cart.CartId" asp-page-handler="GoBack">Go Back</a>
 <br />
 <br />
 <h1>Payment Successful!</h1>
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        
-        @foreach (var item in Model.Receipt.Items)
-        {
+@*@foreach (var item in Model.Receipt.Items)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
             <h6>@item.Name</h6>
-            <h6>@item.Price </h6>
-        }
-        <h5 class="card-title">Receipt</h5>
-        <h5>Total cost: @totalprice $</h5>
+            <h6>@item.Price</h6>
+            <h5 class="card-title">Receipt</h5>
+            <h5>Total cost: @totalprice $</h5>
+        </div>
     </div>
-</div>
-
+}*@
 

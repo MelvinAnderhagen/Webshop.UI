@@ -3,16 +3,20 @@
 @{
 }
 
-<div class="input-group">
-    <form asp-page="/StorePage/LoggedinIndex" method="get">
+@*<div class="input-group">
+    <form asp-page-handler="Search" asp-page="/StorePage/LoggedinIndex" asp-route-productname="@Model.productname" asp-route-id="@Model.ShoppingCart.CartId">
         <div class="input-group">
-            <input type="text" class="form-control" asp-route-id="@Model.ShoppingCart.CartId" name="productname" />
+            <input type="text" class="form-control" asp-for="productname" />
             <span class="input-group-btn">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </span>
         </div>
     </form>
-</div>
+</div>*@
+
+<a asp-page-handler="Search" asp-page="/StorePage/LoggedinIndex" name="productname" asp-route-id="@Model.ShoppingCart.CartId">Search</a>
+<input type="text" class="form-control" asp-for="productname" />
+
 <br />
 <a class="btn btn-light" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="SortMax">Sort by Max Price</a>
 <a class="btn btn-light" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="SortMin">Sort by Min Price</a>

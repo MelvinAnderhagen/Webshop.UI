@@ -15,7 +15,6 @@ namespace ModelDTO
         public bool isPaid { get; set; }
         [JsonProperty("recieptid")]
         public Guid RecieptId { get; set; }
-        [JsonProperty("uid")]
-        public int UserId { get; set; }
+        
     }
 }

@@ -7,7 +7,8 @@ namespace Webshop.UI.DataAccess
 {
     public interface IDataAccess
     {
-        RecieptDTO GetRecieptById(int id);
+        RecieptDTO GetRecieptById(Guid id);
+        IEnumerable<RecieptDTO> GetAllReciepts();
         IEnumerable<CreditCard> GetAllCards();
         List<ProductsDTO> MinPrice();
         List<ProductsDTO> MaxPrice();

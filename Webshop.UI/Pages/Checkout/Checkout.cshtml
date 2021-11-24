@@ -6,31 +6,30 @@
     {
         totalprice += item.Price;
     }
-
-
 }
 
 <br />
 <h1>Checkout</h1>
 <br />
-<a class="btn btn-light" asp-route-id="@Model.Cart.CartId" asp-page-handler="GoBack">Go Back</a>
+
+<a class="btn btn-light" asp-page-handler="GoBack">Go Back</a>
+<br />
+<form asp-page-handler="pay" asp-route-id="@Model.Cart.CartId">
+    <div class="form-group">
+        <label asp-for="card.CreditCardNumber">Creditcart number: </label>
+        <input asp-for="card.CreditCardNumber" class="form-control">
+    </div>
+    <div class="form-group">
+        <br />
+        <label asp-for="card.SecurityCode">Security code: </label>
+        <input asp-for="card.SecurityCode" class="form-control">
+    </div>
     <br />
-    <form asp-page-handler="Pay" asp-route-id="@Model.Cart.CartId">
-        <div class="form-group">
-            <label asp-for="card.CreditCardNumber">Creditcart number: </label>
-            <input asp-for="card.CreditCardNumber" class="form-control">
-            <br />
-            <label asp-for="card.SecurityCode">Security code: </label>
-            <input asp-for="card.SecurityCode" class="form-control">
-        </div>
-        <br />
-        <span asp-validation-for="card.CreditCardNumber" class=@Model.Alert role="alert"> @Model.Feedback </span>
-        <br />  
-        
-        <br />
-        <button type="submit" class="btn btn-white">Pay</button>
-        <br />
-        <h6>Total cost: @totalprice $</h6>
-    </form>
+    <span asp-validation-for="card.CreditCardNumber" class=@Model.Alert role="alert"> @Model.Feedback </span>
+    <br />
+    <button type="submit" class="btn btn-white">Pay</button>
+</form>
+<br />
+<h6>Total cost: @totalprice $</h6>
 
 

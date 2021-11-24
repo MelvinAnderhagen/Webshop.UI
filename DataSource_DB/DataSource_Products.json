@@ -7,38 +7,38 @@
     "message": "Iphone 13, what more do you want to know?"
   },
   {
-    "image": "https://www.elgiganten.se/image/dv_web_D180001002493515/194437/goji-10000mah-mini-size-powerbank-rosa.jpg?$prod_all4one$",
-    "price": 100,
-    "productname": "Powerbank",
-    "productid": 2,
-    "message": "Holds up to 13 hours of charging time. Plug and play device."
-  },
-  {
-    "image": "https://www.elgiganten.se/image/dv_web_D18000100233676/APPLEMLL82ZMA/apple-usb-c-laddningskabel-2-m.jpg?$digital220x220$",
-    "price": 150,
-    "productname": "Iphone Charger",
-    "productid": 3,
-    "message": "Turbo-charger for the new Iphone 13."
-  },
-  {
     "image": "https://www.elgiganten.se/image/dv_web_D180001002716364/267577/irobot-roomba-i3-robotdammsugare-43371513.jpg?$prod_all4one$",
     "price": 600,
     "productname": "Remote vacuum cleaner",
-    "productid": 4,
+    "productid": 2,
     "message": "Remote vacuum cleaner, Cleans your house like never before."
   },
   {
     "image": "https://www.elgiganten.se/image/dv_web_D180001002776904/305410/asus-vivobook-14-x413-14-barbar-dator-i38256.jpg?$prod_all4one$",
     "price": 450,
     "productname": "Asus Laptop",
-    "productid": 5,
+    "productid": 3,
     "message": "Laptop with i3-1005G1 and 8gb of ram."
   },
   {
     "image": "https://www.elgiganten.se/image/dv_web_D180001002868193/379689/nintendo-switch-och-mario-kart-8-deluxe-bundle.jpg?$prod_all4one$",
     "price": 250,
     "productname": "Nintendo Switch",
-    "productid": 6,
+    "productid": 4,
     "message": "Gaming console for nintendo."
+  },
+  {
+    "image": "https://www.elgiganten.se/image/dv_web_D180001002493515/194437/goji-10000mah-mini-size-powerbank-rosa.jpg?$prod_all4one$",
+    "price": 200,
+    "productname": "Powerbank",
+    "productid": 5,
+    "message": "Holds up to 13 hours of charging time. Plug and play device."
+  },
+  {
+    "image": "https://www.elgiganten.se/image/dv_web_D18000100233676/APPLEMLL82ZMA/apple-usb-c-laddningskabel-2-m.jpg?$digital220x220$",
+    "price": 150,
+    "productname": "Iphone Charger",
+    "productid": 6,
+    "message": "Turbo-charger for the new Iphone 13."
   }
 ]

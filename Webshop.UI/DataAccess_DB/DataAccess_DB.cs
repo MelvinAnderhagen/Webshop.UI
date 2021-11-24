@@ -10,16 +10,11 @@ namespace Webshop.UI.DataAccess
 {
     public class DataAccess_DB : IDataAccess
     {
-        public RecieptDTO GetRecieptById(int id)
+        public RecieptDTO GetRecieptById(Guid id)
         {
-            var reciept = GetAllReciepts().ToList();
-            
-            foreach (var item in reciept.FindAll(x => x.UserId == id))
-            {
-                return item;
-            }
-            
-            return null;
+            var reciepts = GetAllReciepts().ToList();
+            var user = reciepts.Single(reciept => reciept.RecieptId == id);
+            return user;
         }
         public void SaveRecipt(int id)
         {
@@ -30,11 +25,10 @@ namespace Webshop.UI.DataAccess
             var reciepts = JsonConvert.DeserializeObject<List<RecieptDTO>>(jsonRead);
             var carts = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead1);
 
-            var shoppingcart = carts.Single(cart => cart.CartId == id);
+            var shoppingcart = carts.Find(cart => cart.CartId == id);
             
             RecieptDTO reciept = new RecieptDTO();
             reciept.RecieptId = Guid.NewGuid();
-            reciept.UserId = shoppingcart.CartId;
             reciept.Items = shoppingcart.CartItems;
             reciepts.Add(reciept);
             reciept.isPaid = true;
@@ -230,8 +224,7 @@ namespace Webshop.UI.DataAccess
         public List<ProductsDTO> MaxPrice()
         {
             var products = GetAllProducts().ToList();
-            products.Reverse();
-            products.Sort();
+            products.OrderByDescending(o => o.Price).ToList();
             return products;
         }
         public IEnumerable<CreditCard> GetAllCards()
