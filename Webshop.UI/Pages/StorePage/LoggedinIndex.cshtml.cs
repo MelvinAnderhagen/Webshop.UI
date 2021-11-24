@@ -19,6 +19,7 @@ namespace Webshop.UI.Pages.StorePage
         public ProductsDTO product { get; set; }
         [BindProperty(SupportsGet = true)]
         public string productname { get; set; }
+        [BindProperty]
         public ShoppingCartDTO ShoppingCart { get; set; }
         public LoggedinIndexModel(IDataAccess dataaccess)
         {
@@ -47,8 +48,9 @@ namespace Webshop.UI.Pages.StorePage
             {
                 Products = Products.Where(p => p.Name.ToLower().Contains(productname.ToLower())).ToList();
                 ShoppingCart = _dataaccess.GetShoppingCart(id);
+                
             }
-            
+          
         }
         public void OnGetAddToCart(int id, int product)
         {

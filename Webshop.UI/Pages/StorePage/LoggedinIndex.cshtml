@@ -4,7 +4,7 @@
 }
 
 @*<div class="input-group">
-    <form asp-page-handler="Search" asp-page="/StorePage/LoggedinIndex" asp-route-productname="@Model.productname" asp-route-id="@Model.ShoppingCart.CartId">
+    <form asp-page-handler="Search" asp-page="/StorePage/LoggedinIndex" asp-route-name="@Model.productname" asp-route-id="@Model.ShoppingCart.CartId">
         <div class="input-group">
             <input type="text" class="form-control" asp-for="productname" />
             <span class="input-group-btn">
@@ -14,8 +14,10 @@
     </form>
 </div>*@
 
-<a asp-page-handler="Search" asp-page="/StorePage/LoggedinIndex" name="productname" asp-route-id="@Model.ShoppingCart.CartId">Search</a>
-<input type="text" class="form-control" asp-for="productname" />
+<form>
+    <input type="text" class="form-control" asp-for="productname" />
+    <a type="submit" asp-page-handler="Search" asp-page="/StorePage/LoggedinIndex" asp-route-name="@Model.productname" asp-route-id="@Model.ShoppingCart.CartId">Search</a>
+</form>
 
 <br />
 <a class="btn btn-light" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="SortMax">Sort by Max Price</a>
