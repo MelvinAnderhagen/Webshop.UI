@@ -16,13 +16,8 @@ namespace Webshop.UI.Pages.StorePage
         
         public List<ProductsDTO> Products { get; set; }
         [BindProperty]
-        public IEnumerable<ProductsDTO> product { get; set; }
-        
-        [BindProperty(SupportsGet = true)]
-        public string SearchString { get; set; }
+        public ProductsDTO product { get; set; }
         public SelectList Price { get; set; }
-        
-
         public ShoppingCartDTO ShoppingCart { get; set; }
         public LoggedinIndexModel(IDataAccess dataaccess)
         {
@@ -30,12 +25,10 @@ namespace Webshop.UI.Pages.StorePage
         }
         public void OnGet(int id)
         {
-            product = _dataaccess.GetAllProducts();
             Products = _dataaccess.GetAllProducts().ToList();
-            ShoppingCart = _dataaccess.GetShoppingCart(id);
-            product = _dataaccess.Search(SearchString);
+            var cart = _dataaccess.GetAllCarts().ToList().SingleOrDefault(cart => cart.CartId == id);
 
-            if (ShoppingCart != null)
+            if (cart != null)
             {
                 ShoppingCart = _dataaccess.GetCartById(id);
             }
@@ -44,10 +37,7 @@ namespace Webshop.UI.Pages.StorePage
                 ShoppingCart = _dataaccess.CreateCart(id);
             }
         }
-        public void OnGetSearch()
-        {
-
-        }
+        
         public void OnGetAddToCart(int id, int product)
         {
             if (ModelState.IsValid)

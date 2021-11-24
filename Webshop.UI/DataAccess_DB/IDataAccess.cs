@@ -1,11 +1,13 @@
 ﻿using Card;
 using ModelDTO;
+using System;
 using System.Collections.Generic;
 
 namespace Webshop.UI.DataAccess
 {
     public interface IDataAccess
     {
+        RecieptDTO GetRecieptById(int id);
         IEnumerable<CreditCard> GetAllCards();
         List<ProductsDTO> MinPrice();
         List<ProductsDTO> MaxPrice();
@@ -26,7 +28,7 @@ namespace Webshop.UI.DataAccess
         ShoppingCartDTO GetCartById(int id);
         ShoppingCartDTO GetShoppingCart(int id);
         void EditCustomer(CustomersDTO customer);
-        RecieptDTO CreateReciept(int id);
+        
         
     }
 }

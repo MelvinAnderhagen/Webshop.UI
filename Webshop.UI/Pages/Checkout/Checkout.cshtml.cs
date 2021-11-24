@@ -27,6 +27,7 @@ namespace Webshop.UI.Pages.Checkout
         public void OnGet(int id)
         {
             Cart = _dataaccess.GetShoppingCart(id);
+           
         }
         public IActionResult OnPostPay(int id)
         {
@@ -34,7 +35,6 @@ namespace Webshop.UI.Pages.Checkout
             {
                 if (_dataaccess.CardForms(card.CreditCardNumber, card.SecurityCode))
                 {
-                    _dataaccess.CreateReciept(id);
                     _dataaccess.SaveRecipt(id);
                     _dataaccess.ClearCartById(id);
                     return RedirectToPage("/StorePage/LoggedinIndex");

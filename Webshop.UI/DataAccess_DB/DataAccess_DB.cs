@@ -11,18 +11,35 @@ namespace Webshop.UI.DataAccess
     public class DataAccess_DB : IDataAccess
     {
         private List<ProductsDTO> _productslist;
+        public RecieptDTO GetRecieptById(int id)
+        {
+            var reciept = GetAllReciepts().ToList();
+            
+            foreach (var item in reciept.FindAll(x => x.UserId == id))
+            {
+                return item;
+            }
+            
+            return null;
+        }
         public void SaveRecipt(int id)
         {
             var path1 = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
-            var jsonRead = File.ReadAllText(path);
-            var carts = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
-            var shoppingcart = carts.Single(cart => cart.CartId == id);
-            var indexofcart = carts.IndexOf(shoppingcart);
+            var jsonRead1 = File.ReadAllText(path);
+            var jsonRead = File.ReadAllText(path1);
+            var reciepts = JsonConvert.DeserializeObject<List<RecieptDTO>>(jsonRead);
+            var carts = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead1);
 
-            List<ProductsDTO> reciepts = new List<ProductsDTO>();
+            var shoppingcart = carts.Single(cart => cart.CartId == id);
             
-            reciepts = carts[indexofcart].CartItems;
+            RecieptDTO reciept = new RecieptDTO();
+            reciept.RecieptId = Guid.NewGuid();
+            reciept.UserId = shoppingcart.CartId;
+            reciept.Items = shoppingcart.CartItems;
+            reciepts.Add(reciept);
+            reciept.isPaid = true;
+            
 
             var serialize = JsonConvert.SerializeObject(reciepts);
             File.WriteAllText(path1, serialize);
@@ -133,17 +150,7 @@ namespace Webshop.UI.DataAccess
             var serialized = JsonConvert.SerializeObject(carts);
             File.WriteAllText(path, serialized);
         }
-        public RecieptDTO CreateReciept(int id)
-        {
-            var Reciepts = GetAllReciepts().ToList(); 
-            RecieptDTO reciept = new RecieptDTO();
-            reciept.RecieptId = id;
-            Reciepts.Add(reciept);
-            var serializeobject = JsonConvert.SerializeObject(Reciepts);
-            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
-            File.WriteAllText(path, serializeobject);
-            return reciept;
-        }
+
         public ShoppingCartDTO CreateCart(int id)
         {
             var CurrentCart = GetAllCarts().ToList(); //Sends in list of type ShoppingCart and saves it in a variable
@@ -160,7 +167,8 @@ namespace Webshop.UI.DataAccess
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
             var jsonRead = File.ReadAllText(path);
             var CurrentCart = JsonConvert.DeserializeObject<List<ShoppingCartDTO>>(jsonRead);
-            var ShoppingCart = CurrentCart.SingleOrDefault(cart => cart.CartId == id); //Takes that list and finds cart id
+            var ShoppingCart = CurrentCart.Single(cart => cart.CartId == id); //Takes that list and finds cart id
+
             return ShoppingCart; //Returns id
         }
         public void ClearCartById(int id)
