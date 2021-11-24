@@ -27,7 +27,6 @@ namespace Webshop.UI.Pages.Checkout
         public void OnGet(int id)
         {
             Cart = _dataaccess.GetShoppingCart(id);
-           
         }
         public IActionResult OnPostPay(int id)
         {

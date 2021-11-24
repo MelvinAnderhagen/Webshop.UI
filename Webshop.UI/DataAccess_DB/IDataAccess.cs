@@ -11,7 +11,6 @@ namespace Webshop.UI.DataAccess
         IEnumerable<CreditCard> GetAllCards();
         List<ProductsDTO> MinPrice();
         List<ProductsDTO> MaxPrice();
-        IEnumerable<ProductsDTO> Search(string searchTerm);
         void ClearCartById(int id);
         void SaveRecipt(int id);
         bool CardForms(string ccn, int sc);

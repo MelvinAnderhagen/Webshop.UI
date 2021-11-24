@@ -2,11 +2,11 @@
 @model Webshop.UI.Pages.Checkout.CheckoutModel
 @{
     var totalprice = 0;
-    @foreach (var item in Model.Cart.CartItems)
+    foreach (var item in Model.Cart.CartItems)
     {
         totalprice += item.Price;
     }
-    
+
 
 }
 

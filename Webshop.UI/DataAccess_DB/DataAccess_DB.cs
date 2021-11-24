@@ -10,7 +10,6 @@ namespace Webshop.UI.DataAccess
 {
     public class DataAccess_DB : IDataAccess
     {
-        private List<ProductsDTO> _productslist;
         public RecieptDTO GetRecieptById(int id)
         {
             var reciept = GetAllReciepts().ToList();
@@ -150,7 +149,6 @@ namespace Webshop.UI.DataAccess
             var serialized = JsonConvert.SerializeObject(carts);
             File.WriteAllText(path, serialized);
         }
-
         public ShoppingCartDTO CreateCart(int id)
         {
             var CurrentCart = GetAllCarts().ToList(); //Sends in list of type ShoppingCart and saves it in a variable
@@ -223,14 +221,6 @@ namespace Webshop.UI.DataAccess
             File.WriteAllText(path, serializedUsers);
 
         }
-        public IEnumerable<ProductsDTO> Search(string searchTerm)
-        {
-            if (string.IsNullOrEmpty(searchTerm))
-            {
-                return _productslist;
-            }
-            return _productslist.Where(e => e.Name.Contains(searchTerm));
-        }
         public List<ProductsDTO> MinPrice()
         {
             var products = GetAllProducts().ToList();
@@ -244,7 +234,6 @@ namespace Webshop.UI.DataAccess
             products.Sort();
             return products;
         }
-
         public IEnumerable<CreditCard> GetAllCards()
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\Card_DataSource.json";
