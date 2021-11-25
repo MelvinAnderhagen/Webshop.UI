@@ -17,6 +17,7 @@ namespace Webshop.UI.Pages.Checkout
         {
             _dataaccess = dataaccess;
         }
+        public List<ProductsDTO> ListOfItems { get; set; }
         public ShoppingCartDTO Cart { get; set; }
         public void OnGet(int id)
         {
