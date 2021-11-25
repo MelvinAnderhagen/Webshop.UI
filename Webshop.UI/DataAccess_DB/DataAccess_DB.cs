@@ -224,8 +224,8 @@ namespace Webshop.UI.DataAccess
         public List<ProductsDTO> MaxPrice()
         {
             var products = GetAllProducts().ToList();
-            products.OrderByDescending(o => o.Price).ToList();
-            return products;
+            var product = products.OrderByDescending(o => o.Price).ToList();
+            return product;
         }
         public IEnumerable<CreditCard> GetAllCards()
         {

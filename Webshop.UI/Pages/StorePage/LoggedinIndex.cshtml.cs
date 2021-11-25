@@ -39,18 +39,21 @@ namespace Webshop.UI.Pages.StorePage
                 ShoppingCart = _dataaccess.CreateCart(id);
             }
         }
-        public void OnGetSearch(string productname, int id)
+        public IActionResult OnGetSearch(string productname, int id)
         {
             Products = _dataaccess.GetAllProducts().ToList();
             ShoppingCart = _dataaccess.GetShoppingCart(id);
 
             if (!string.IsNullOrEmpty(productname))
             {
-                Products = Products.Where(p => p.Name.ToLower().Contains(productname.ToLower())).ToList();
-                ShoppingCart = _dataaccess.GetShoppingCart(id);
                 
             }
-          
+            else
+            {
+                Products = Products.Where(p => p.Name.ToLower().Contains(productname.ToLower())).ToList();
+                ShoppingCart = _dataaccess.GetShoppingCart(id);
+            }
+          return Page();
         }
         public void OnGetAddToCart(int id, int product)
         {

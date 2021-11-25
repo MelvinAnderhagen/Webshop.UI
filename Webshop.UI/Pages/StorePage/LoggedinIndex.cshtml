@@ -3,8 +3,8 @@
 @{
 }
 
-@*<div class="input-group">
-    <form asp-page-handler="Search" asp-page="/StorePage/LoggedinIndex" asp-route-name="@Model.productname" asp-route-id="@Model.ShoppingCart.CartId">
+<div class="input-group">
+    <form asp-page="/StorePage/LoggedinIndex">
         <div class="input-group">
             <input type="text" class="form-control" asp-for="productname" />
             <span class="input-group-btn">
@@ -12,12 +12,12 @@
             </span>
         </div>
     </form>
-</div>*@
+</div>
 
-<form>
+@*<form>
     <input type="text" class="form-control" asp-for="productname" />
     <a type="submit" asp-page-handler="Search" asp-page="/StorePage/LoggedinIndex" asp-route-name="@Model.productname" asp-route-id="@Model.ShoppingCart.CartId">Search</a>
-</form>
+</form>*@
 
 <br />
 <a class="btn btn-light" asp-route-id="@Model.ShoppingCart.CartId" asp-page-handler="SortMax">Sort by Max Price</a>
