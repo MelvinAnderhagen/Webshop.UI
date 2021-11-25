@@ -7,11 +7,14 @@
  GetAllCustomers(); 
  GetAllReciepts(); 
  GetAllCarts(); 
+ GetAllProducts();
  AddToCart(); 
  GetShoppingCart(); 
  EditItems(); 
  EditCustomer(); 
  GetAllCards(); 
+ SaveReciept();
+ RegisterCustomer();
  ```
  --------------------------
  
