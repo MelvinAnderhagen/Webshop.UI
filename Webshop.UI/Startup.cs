@@ -24,7 +24,8 @@ namespace Webshop.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddSession();
+            services.AddMemoryCache();
             services.AddSingleton<IDataAccess, DataAccess_DB>();
             services.AddRazorPages();
         }
@@ -47,6 +48,8 @@ namespace Webshop.UI
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 

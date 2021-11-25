@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ModelDTO;
@@ -34,7 +35,8 @@ namespace Webshop.UI.Pages.Login
                 CustomersDTO customer = _dataaccess.LoginForms(user.Email, user.Password); 
                 if (customer != null)
                 {
-                    return RedirectToPage("/StorePage/LoggedinIndex", "Login", new { Id = customer.Id});
+                    
+                    return RedirectToPage("/StorePage/LoggedinIndex", "Login", new { id = customer.Id});
                 }
                 else
                 {
