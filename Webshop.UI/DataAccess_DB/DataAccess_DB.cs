@@ -10,12 +10,6 @@ namespace Webshop.UI.DataAccess
 {
     public class DataAccess_DB : IDataAccess
     {
-        public RecieptDTO GetRecieptById(Guid id)
-        {
-            var reciepts = GetAllReciepts().ToList();
-            var user = reciepts.Single(reciept => reciept.RecieptId == id);
-            return user;
-        }
         public void SaveRecipt(int id)
         {
             var path1 = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
@@ -30,6 +24,7 @@ namespace Webshop.UI.DataAccess
             RecieptDTO reciept = new RecieptDTO();
             reciept.RecieptId = Guid.NewGuid();
             reciept.Items = shoppingcart.CartItems;
+            reciept.UserId = id;
             reciepts.Add(reciept);
             reciept.isPaid = true;
             
@@ -112,7 +107,7 @@ namespace Webshop.UI.DataAccess
             var users = GetAllCustomers().ToList(); //Inputs customer list in users
             foreach (var item in users) //foreach item in users (goes through the list of customers)
             {
-                if (password == item.Password && email == item.Email) //If password and email matches with customer json
+                if (password == item.Password && email == item.Email) //If password and email matches with json
                 {
                     return item; //return item
                 }
@@ -147,7 +142,7 @@ namespace Webshop.UI.DataAccess
         {
             var CurrentCart = GetAllCarts().ToList(); //Sends in list of type ShoppingCart and saves it in a variable
             ShoppingCartDTO Cart = new ShoppingCartDTO(); //Makes a new ShoppingCart object
-            Cart.CartId = id; //Assigns the same Id to the cart as the customer
+            Cart.CartId = id; //Assigns the same value of cartid to id input
             CurrentCart.Add(Cart); //Adds a new cart to the list
             var serializeobject = JsonConvert.SerializeObject(CurrentCart);
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
@@ -233,7 +228,6 @@ namespace Webshop.UI.DataAccess
             var jsonresponse = File.ReadAllText(path);
             return JsonConvert.DeserializeObject<IEnumerable<CreditCard>>(jsonresponse);
         }
-
         
     }
 }

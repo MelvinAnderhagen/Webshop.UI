@@ -17,10 +17,6 @@ namespace Webshop.UI.Pages.StorePage
         [BindProperty]
         public List<ProductsDTO> Products { get; set; }
         [BindProperty]
-        public ProductsDTO product { get; set; }
-        [BindProperty]
-        public int Cartid { get; set; }
-        [BindProperty]
         public string Productname { get; set; }
         [BindProperty]
         public ShoppingCartDTO ShoppingCart { get; set; }

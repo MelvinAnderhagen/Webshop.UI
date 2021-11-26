@@ -7,7 +7,6 @@ namespace Webshop.UI.DataAccess
 {
     public interface IDataAccess
     {
-        RecieptDTO GetRecieptById(Guid id);
         IEnumerable<RecieptDTO> GetAllReciepts();
         IEnumerable<CreditCard> GetAllCards();
         List<ProductsDTO> MinPrice();
@@ -28,7 +27,5 @@ namespace Webshop.UI.DataAccess
         ShoppingCartDTO GetCartById(int id);
         ShoppingCartDTO GetShoppingCart(int id);
         void EditCustomer(CustomersDTO customer);
-        
-        
     }
 }
