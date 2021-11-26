@@ -1,1 +1,56 @@
-[{"name":"Admin","password":"admin123","email":"admin@admin.se","id":0},{"name":"Melvin Anderhagen","password":"hundenkattenglassen","email":"melvin.anderhagen@gmail.com","id":1},{"name":"Ingrid Kasslersson","password":"moonwalker","email":"ingrid.kasslersson@hotmail.com","id":2},{"name":"Mel","password":"katten","email":"mel@and.se","id":3},{"name":"Elias pingpong","password":"123","email":"elias@jakobsson.com","id":4},{"name":"Mel","password":"hund","email":"pol@and.se","id":5},{"name":"Za","password":"123","email":"zzache@gmail.com","id":6},{"name":"Polka","password":"123","email":"polka@gmail.com","id":10},{"name":"Rafael","password":"123","email":"rafael@rafael.se","id":7}]
+[
+  {
+    "name": "Admin",
+    "password": "admin123",
+    "email": "admin@admin.se",
+    "id": 0
+  },
+  {
+    "name": "Melvin Anderhagen",
+    "password": "hundenkattenglassen",
+    "email": "melvin.anderhagen@gmail.com",
+    "id": 1
+  },
+  {
+    "name": "Ingrid Kasslersson",
+    "password": "moonwalker",
+    "email": "ingrid.kasslersson@hotmail.com",
+    "id": 2
+  },
+  {
+    "name": "Mel",
+    "password": "katten",
+    "email": "mel@and.se",
+    "id": 3
+  },
+  {
+    "name": "Elias pingpong",
+    "password": "123",
+    "email": "elias@jakobsson.com",
+    "id": 4
+  },
+  {
+    "name": "Mel",
+    "password": "hund",
+    "email": "pol@and.se",
+    "id": 5
+  },
+  {
+    "name": "Za",
+    "password": "123",
+    "email": "zzache@gmail.com",
+    "id": 6
+  },
+  {
+    "name": "Polka",
+    "password": "123",
+    "email": "polka@gmail.com",
+    "id": 10
+  },
+  {
+    "name": "Rafael",
+    "password": "123",
+    "email": "rafael@rafael.se",
+    "id": 7
+  }
+]
