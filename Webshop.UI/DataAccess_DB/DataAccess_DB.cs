@@ -44,12 +44,6 @@ namespace Webshop.UI.DataAccess
             }
             return false;
         }
-        public IEnumerable<RecieptDTO> GetAllReciepts()
-        {
-            var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\DataSource_Reciept.json";
-            var jsonRead = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<IEnumerable<RecieptDTO>>(jsonRead);
-        }
         public IEnumerable<ShoppingCartDTO> GetAllCarts()
         {
             var path = @"C:\Users\melvi\Source\Repos\Webshop.UI\DataSource_DB\ShoppingCart_DB.json";
