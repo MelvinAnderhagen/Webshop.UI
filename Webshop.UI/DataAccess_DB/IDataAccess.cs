@@ -7,7 +7,7 @@ namespace Webshop.UI.DataAccess
 {
     public interface IDataAccess
     {
-        IEnumerable<RecieptDTO> GetAllReciepts();
+        IEnumerable<CreditCard> GetAllCards();
         List<ProductsDTO> MinPrice();
         List<ProductsDTO> MaxPrice();
         void ClearCartById(int id);
